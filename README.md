@@ -46,6 +46,7 @@ these may deplete supplies, damage ship, affect crew, or something else of the l
 {
     "id": 1,
     "name": "Is that... Singing?",
+    "props": ["rocks", "dinghy"],
     "description": "The whistling of the ocean breeze carries a haunting melody. After a moment, the lookout spots a small islet port-ward."
     "options": [
         {
