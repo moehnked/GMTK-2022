@@ -3,6 +3,7 @@
 [ext_resource path="res://Assets/Fonts/DrukaatieBurti-0.14.1/DrukaatieBurti-Heavy.ttf" type="DynamicFontData" id=1]
 
 [resource]
+size = 96
 outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
 use_mipmaps = true

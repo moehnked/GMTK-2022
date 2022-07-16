@@ -2,11 +2,12 @@ extends Node
 
 var gameState = {
 	"seed":0,
+	"Phase": 0,
 	"Relics":{},
 	"Ship":{
 		"ShipType":{},
 		"Supplies":10,
-		"Crew":{},
+		"Crew":[],
 		"Hull":5,
 		"Statuses":{}
 	},
@@ -34,6 +35,7 @@ func get_rng():
 
 func initialize():
 	RNG.seed = gameState["seed"]
+	get_tree().call_group("GamestateObserver", "game_state_initialized")
 
 # Necessary "Scenes"
 # Exploration Phase
