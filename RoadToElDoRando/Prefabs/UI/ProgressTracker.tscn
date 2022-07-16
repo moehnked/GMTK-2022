@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Assets/Sprites/UI/ProgressBar/flourish2.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Sprites/UI/ProgressBar/flourish3.png" type="Texture" id=2]
@@ -14,8 +14,12 @@
 [ext_resource path="res://Assets/UI/icons/PNG/White/1x/massiveMultiplayer.png" type="Texture" id=12]
 [ext_resource path="res://Assets/UI/defaultTheme.tres" type="Theme" id=13]
 [ext_resource path="res://Assets/UI/icons/PNG/White/1x/menuGrid.png" type="Texture" id=14]
+[ext_resource path="res://Prefabs/UI/ProgressTracker.gd" type="Script" id=15]
 
-[node name="ProgressTracker" type="Node2D"]
+[node name="ProgressTracker" type="Node2D" groups=["GamestateObserver"]]
+script = ExtResource( 15 )
+crewlabel = NodePath("CrewDisplay/CrewLabel")
+suppliesLabel = NodePath("SuppliesDisplay/Supplies")
 
 [node name="Bg" type="Sprite" parent="."]
 position = Vector2( 0, -28.5 )
@@ -62,7 +66,7 @@ texture = ExtResource( 9 )
 [node name="Ring" type="Sprite" parent="CrewDisplay"]
 texture = ExtResource( 8 )
 
-[node name="Label" type="Label" parent="CrewDisplay"]
+[node name="CrewLabel" type="Label" parent="CrewDisplay"]
 margin_left = -44.1176
 margin_top = -46.7914
 margin_right = 61.8824
@@ -117,14 +121,14 @@ texture = ExtResource( 9 )
 [node name="Ring" type="Sprite" parent="SuppliesDisplay"]
 texture = ExtResource( 8 )
 
-[node name="Label" type="Label" parent="SuppliesDisplay"]
+[node name="Supplies" type="Label" parent="SuppliesDisplay"]
 margin_left = -44.1176
 margin_top = -46.7914
 margin_right = 61.8824
 margin_bottom = 62.2086
 rect_scale = Vector2( 0.840986, 0.840986 )
 theme = ExtResource( 13 )
-text = "2"
+text = "10"
 align = 1
 
 [node name="RingDisplay2" type="Node2D" parent="SuppliesDisplay"]
@@ -147,17 +151,35 @@ position = Vector2( 0, 2.94378 )
 scale = Vector2( 2.90368, 2.90368 )
 texture = ExtResource( 14 )
 
-[node name="Label" type="Label" parent="SuppliesDisplay/RingDisplay2"]
-visible = false
-margin_left = -47.1004
-margin_top = -88.3133
-margin_right = 15.8996
-margin_bottom = 20.6867
-rect_scale = Vector2( 1.5583, 1.5583 )
-theme = ExtResource( 13 )
-text = "2"
-
 [node name="Banner" type="Sprite" parent="."]
 position = Vector2( 0, 83 )
 scale = Vector2( 0.457505, 0.457505 )
 texture = ExtResource( 11 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = -36.0
+margin_top = 41.0
+margin_right = 149.0
+margin_bottom = 152.0
+rect_scale = Vector2( 0.571222, 0.571222 )
+rect_clip_content = false
+theme = ExtResource( 13 )
+bbcode_enabled = true
+bbcode_text = "[wave]04[/wave]"
+text = "04"
+scroll_active = false
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+margin_left = -27.0
+margin_top = 98.0
+margin_right = 461.0
+margin_bottom = 347.0
+rect_scale = Vector2( 0.13102, 0.13102 )
+rect_clip_content = false
+theme = ExtResource( 13 )
+bbcode_enabled = true
+bbcode_text = "[wave]Leagues
+to Port...[/wave]"
+text = "Leagues
+to Port..."
+scroll_active = false

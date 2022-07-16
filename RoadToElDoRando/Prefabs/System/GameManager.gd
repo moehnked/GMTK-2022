@@ -6,7 +6,7 @@ var gameState = {
 	"Ship":{
 		"ShipType":{},
 		"Supplies":10,
-		"Crew":{},
+		"Crew":[],
 		"Hull":5,
 		"Statuses":{}
 	},
