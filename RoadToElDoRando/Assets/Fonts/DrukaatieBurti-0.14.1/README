@@ -1,0 +1,36 @@
+   1. What's this?
+  =================
+
+	“DrukaatieBurti” is another technical handwriting font. The capital 
+	letters have the same height as „Liberation Serif” font. Texts 
+	formatted with „Drukaatie burti Regular” takes approximately the 
+	same space as texts formatted with „Liberation Serif Regular”.
+
+   2.  Install to system
+  =======================
+
+    For Fedora, you could manually install the fonts by copying the TTFs to 
+    ~/.fonts for user wide usage, or to /usr/share/fonts/DrukaatieBurti 
+    for system-wide availability. Then, run "fc-cache" to let that cached.
+
+    For other distributions, please check out corresponding documentation.
+
+
+   3. Usage
+  ==========
+
+    Simply select preferred DrukaatieBurti font in applications and start using.
+
+
+   4. License
+  ============
+
+    SIL OPEN FONT LICENSE Version 1.1.
+
+    Please read file "COPYING" for SIL OFL.
+
+
+   5. Credits
+  ============
+
+    Please read file "AUTHORS" for list of contributors.
