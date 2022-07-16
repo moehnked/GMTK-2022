@@ -12,7 +12,7 @@ export var vertscale = 1.2 #Distorts the y-axis of the display area up so that l
 
 
 func _ready():
-	yield(get_tree().create_timer(1.0), "timeout")
+	SetupDisplayCurve()
 	AddOption("Dread On Open Water","ev1")
 	AddOption("A Serpent, Writhing","ev2")
 	AddOption("The Too-Quiet Cove","ev3","d:3|3")
@@ -21,12 +21,12 @@ func _ready():
 	AddOption("A Storm In Red","ev4","d:1")
 	AddOption("Is That...Singing?","ev4","d:3")
 	AddOption("A Sucking Slime Sea","ev4","d:2|2|2")
-	SetupDisplayCurve()
 	SetNavigationOptionsStart()
+	update()
+	yield(get_tree().create_timer(0.5), "timeout")
 	DisplayNavigationOptions()
 	yield(get_tree().create_timer(4.5), "timeout")
 	UndisplayNavigationOptions()
-#	update()
 
 func SetupDisplayCurve():
 
@@ -39,7 +39,7 @@ func SetupDisplayCurve():
 func _draw():
 	for i in range(0,options.size()):
 		$DisplayCurve/DisplayFinder.unit_offset = (1.0/float(options.size()-1)) * i
-		var desiredPosition = (($DisplayCurve/DisplayFinder.position) - self.rect_size/2) * 10 + self.rect_size/2 - options[i].rect_size/2
+		var desiredPosition = (($DisplayCurve/DisplayFinder.position) - self.rect_size/2) * 6.5 + self.rect_size/2 - options[i].rect_size/2
 		draw_circle(desiredPosition,5,Color(1,1,0))
 
 func SetNavigationOptionsStart():
@@ -58,7 +58,9 @@ func DisplayNavigationOptions():
 
 func UndisplayNavigationOptions():
 	for i in range(options.size()):
-		var desiredPosition = (($DisplayCurve/DisplayFinder.position) - self.rect_size/2) * 10 + self.rect_size/2 - options[i].rect_size/2
+		$DisplayCurve/DisplayFinder.unit_offset = (1.0/float(options.size()-1)) * i
+		var desiredPosition = (($DisplayCurve/DisplayFinder.position) - self.rect_size/2) * 6.5 + self.rect_size/2 - options[i].rect_size/2
+		print("Setting Undisplay position: ",desiredPosition)
 		$Tween.interpolate_property(options[i],"rect_position",options[i].rect_position,desiredPosition,tweenSpeed,Tween.TRANS_CUBIC,Tween.EASE_OUT,i*0.01)
 	#Yield for tween completion, then hide
 	$Tween.start()
