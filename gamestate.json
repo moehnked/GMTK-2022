@@ -1,0 +1,21 @@
+{
+    "seed":0,
+    "Relics":{},
+    "Ship":{
+        "ShipType":{},
+        "Supplies":10,
+        "Crew":{},
+        "Hull":5,
+        "Curses":{
+            "Cursetype":roundsremaining
+        }
+    },
+    "Round":0,
+    "PortDistance":4,
+    "PortsReached": 0,
+    "CurrentDistance":0,
+    "totalDistance": 0,
+    "events":[
+        "eventType":eventDistance
+    ]
+}

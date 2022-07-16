@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Prefabs/UI/RelicSlotButton.gd" type="Script" id=4]
+
+[node name="RelicSlotButton" type="Panel"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_right = 661.0
+margin_bottom = 194.0
+mouse_default_cursor_shape = 2
+script = ExtResource( 4 )
+
+[connection signal="mouse_entered" from="." to="." method="_on_RelicSlotButton_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_RelicSlotButton_mouse_exited"]
