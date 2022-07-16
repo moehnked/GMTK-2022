@@ -72,7 +72,7 @@ these may deplete supplies, damage ship, affect crew, or something else of the l
                 },
                 "failure": {
                     "text": "The curves of her beautiful form bring to mind the sea. Her voice burrows deeply into your brain, and you cannot recall wanting anything else. The sun sets on your expedition before the cold jars you from your reverie. Your crewmates are not so lucky; their adoring faces are burned by the sun and salt, and they don't respond to your cries. You return, alone, to the ship."
-                    "reward": [{"resource": "morale", "value": -1}, {"resource": "crew", "value": -1}
+                    "reward": [{"resource": "morale", "value": -1}, {"resource": "crew", "value": -1}]
                 }
             }
         }
