@@ -40,6 +40,7 @@ skeleton = NodePath("")
 material/0 = null
 
 [node name="Cast_1" type="RayCast" parent="."]
+visible = false
 cast_to = Vector3( 1, 0, 0 )
 collision_mask = 2
 
@@ -47,17 +48,21 @@ collision_mask = 2
 collision_mask = 2
 
 [node name="Cast_3" type="RayCast" parent="."]
-cast_to = Vector3( 0, 1, 0 )
-collision_mask = 2
-
-[node name="Cast_4" type="RayCast" parent="."]
+visible = false
 cast_to = Vector3( 0, 0, 1 )
 collision_mask = 2
 
-[node name="Cast_5" type="RayCast" parent="."]
+[node name="Cast_4" type="RayCast" parent="."]
+visible = false
 cast_to = Vector3( 0, 0, -1 )
 collision_mask = 2
 
+[node name="Cast_5" type="RayCast" parent="."]
+visible = false
+cast_to = Vector3( 0, 1, 0 )
+collision_mask = 2
+
 [node name="Cast_6" type="RayCast" parent="."]
+visible = false
 cast_to = Vector3( -1, 0, 0 )
 collision_mask = 2

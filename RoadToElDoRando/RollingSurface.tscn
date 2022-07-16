@@ -52,21 +52,21 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0
 mesh = SubResource( 2 )
 material/0 = SubResource( 3 )
 
-[node name="StaticBody" type="StaticBody" parent="."]
+[node name="Dome" type="StaticBody" parent="."]
 
-[node name="Icosphere" type="MeshInstance" parent="StaticBody"]
+[node name="Icosphere" type="MeshInstance" parent="Dome"]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
 visible = false
 mesh = SubResource( 7 )
 skeleton = NodePath("")
 material/0 = null
 
-[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+[node name="CollisionShape" type="CollisionShape" parent="Dome"]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
 visible = false
 shape = SubResource( 8 )
 
-[node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
+[node name="MeshInstance" type="MeshInstance" parent="Dome"]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
 mesh = SubResource( 5 )
 skeleton = NodePath("")
