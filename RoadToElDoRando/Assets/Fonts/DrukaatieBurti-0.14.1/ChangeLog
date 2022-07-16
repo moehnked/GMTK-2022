@@ -1,0 +1,15 @@
+
+* Wed Mar 25 2015 Kārlis Kalviškis <eko at lanet.lv>
+- First public release 0.12.
+
+* Thu Mar 26 2015 Kārlis Kalviškis <eko at lanet.lv>
+- Row spacing has been made more compatible with different systems.
+
+* Sat Mar 28 2015 Kārlis Kalviškis <eko at lanet.lv>
+- For compatibility reasons “DrukaatieBurti-Medium” is
+  renamed as “DrukaatieBurti-Regular”.
+- The placements of the diacritic marks are emproved.
+
+* Wed Apr 08 2015 Kārlis Kalviškis <eko at lanet.lv>
+- For the font “DrukaatieBurti-Regular” the OS/2 Weight Class
+  has been changed to “400 Regular”. 
