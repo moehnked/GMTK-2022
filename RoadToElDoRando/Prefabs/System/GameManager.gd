@@ -2,6 +2,7 @@ extends Node
 
 var gameState = {
 	"seed":0,
+	"Phase": 0,
 	"Relics":{},
 	"Ship":{
 		"ShipType":{},
