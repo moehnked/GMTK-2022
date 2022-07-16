@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Sprites/Water/wave1.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/Water/wave2.png" type="Texture" id=3]
+
+[node name="WaveGroup" type="Node2D"]
+
+[node name="Wave1" type="Sprite" parent="."]
+scale = Vector2( 1.1, 1.1 )
+texture = ExtResource( 2 )
+centered = false
+
+[node name="Wave3" type="Sprite" parent="Wave1"]
+position = Vector2( 472, 0 )
+texture = ExtResource( 2 )
+centered = false
+flip_h = true
+
+[node name="Wave2" type="Sprite" parent="."]
+scale = Vector2( 1.1, 1.1 )
+texture = ExtResource( 3 )
+centered = false
+
+[node name="Wave3" type="Sprite" parent="Wave2"]
+position = Vector2( 472, 0 )
+texture = ExtResource( 3 )
+centered = false
+flip_h = true

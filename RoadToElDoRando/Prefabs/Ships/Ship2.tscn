@@ -1,0 +1,235 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/Sprites/Ships/Ship2/Sails.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Sprites/Ships/Ship2/hull.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/Ships/Ship2/cover.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/Ships/Ship2/Gear1.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/Ships/Ship2/Gear2.png" type="Texture" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Container/Gear2:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Container/Gear1:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -360.0 ]
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("Container:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0.4, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("Container:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, -0.3, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("Container:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1.9, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+tracks/5/type = "bezier"
+tracks/5/path = NodePath("Container/Sails:scale:x")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1.036, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+tracks/6/type = "bezier"
+tracks/6/path = NodePath("Container/Sails:scale:y")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1.051, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Container/Gear2:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Container/Gear1:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("Container:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("Container:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("Container:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/5/type = "bezier"
+tracks/5/path = NodePath("Container/Cover:position:x")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"points": PoolRealArray( 11, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/6/type = "bezier"
+tracks/6/path = NodePath("Container/Cover:position:y")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"points": PoolRealArray( -7, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/7/type = "bezier"
+tracks/7/path = NodePath("Container/Sails:position:x")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"points": PoolRealArray( -27, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/8/type = "bezier"
+tracks/8/path = NodePath("Container/Sails:position:y")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"points": PoolRealArray( -13, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/9/type = "bezier"
+tracks/9/path = NodePath("Container/Sails:scale:x")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/10/type = "bezier"
+tracks/10/path = NodePath("Container/Sails:scale:y")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+
+[node name="Ship" type="Node2D"]
+
+[node name="Container" type="Node2D" parent="."]
+
+[node name="Sails" type="Sprite" parent="Container"]
+position = Vector2( -27, -13 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Gear2" type="Sprite" parent="Container"]
+position = Vector2( 27, 5 )
+texture = ExtResource( 5 )
+
+[node name="Gear1" type="Sprite" parent="Container"]
+position = Vector2( 8, 4 )
+texture = ExtResource( 4 )
+
+[node name="Cover" type="Sprite" parent="Container"]
+modulate = Color( 3, 3, 3, 1 )
+position = Vector2( 11, -7 )
+texture = ExtResource( 3 )
+centered = false
+
+[node name="Sprite" type="Sprite" parent="Container"]
+texture = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Idle"
+playback_process_mode = 0
+playback_speed = 0.2
+anims/Idle = SubResource( 1 )
+anims/RESET = SubResource( 2 )

@@ -6,10 +6,10 @@ Ocean-voyage exploration game where rolling dice on unexplored tiles determines 
 you are a ship with a crew, supplies counter
 
 ## Turn Phases
-phase 1
+### phase 1
     exploration phase
-    click the explore button to roll exploration dice. determines how far you go along the route.
-phase 2
+    click the explore button to roll exploration dice. determines how far you go along the route to next port.
+### phase 2
     navigation phase
     zoom in on the crows nest, crew member pops up to view potential places to go
     options are rolled on massive table of where you can take the ship this phase.
@@ -22,27 +22,18 @@ phase 2
     might consider saving crew die for the event phase, you never know when you'll need them
     select the option an undergo the consequences of the event
     
-phase 3
+### phase 3
     event resolution
     
-phase 4
+### phase 4
     relic phase
     roll all your relics, their effects engage based on the rolls from their respective tables
 
-## explore
-clicking the explore button rolls a di, the result of the die reveals the next area / event based on the result.
-exploring decreases a certain amount of supplies
-> Open Water
-    > sea monster
-    > rival pirate
-    > navy check
-    > meraimaid siren
-    > seagul cult
-> Islands
-    > ruins
 
 ## Ports
 the roll on exploration determines how far along the route you travel. the distance between ports increases each time.
+ports replenish your supplies.
+you may spend (some kind of limited resource) on upgrading: max supply, purchasing a new crew member, improving your ships hull & armaments
 
 
 
