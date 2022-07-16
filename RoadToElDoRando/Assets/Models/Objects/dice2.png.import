@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/banner.png-a922fa1939fef11c872316e3266a572c.stex"
+path="res://.import/dice2.png-5f0bf8841244f9dbf943c96c986a4a9c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/UI/navigationBanners/banner.png"
-dest_files=[ "res://.import/banner.png-a922fa1939fef11c872316e3266a572c.stex" ]
+source_file="res://Assets/Models/Objects/dice2.png"
+dest_files=[ "res://.import/dice2.png-5f0bf8841244f9dbf943c96c986a4a9c.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
