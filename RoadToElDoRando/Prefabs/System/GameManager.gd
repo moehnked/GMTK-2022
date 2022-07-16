@@ -35,6 +35,42 @@ func get_rng():
 func initialize():
 	RNG.seed = gameState["seed"]
 
+# Necessary "Scenes"
+# Exploration Phase
+# Navigation Phase
+# Event phase
+# Relic phase
+# Port
+# End Phase
+# Win Screen
+# Lose Screen
+# Game Summary
+
+# PHASE 1: Exploration
+# Roll dice to determine how much progress is made towards port
+# If Progress > Dist. to Port, show Port scene
+# Else to Navigation Phase
+
+# Phase 2: Navigation Phase
+# Randomly select n events to choose from and assign dice requirements
+# Show Available Options
+# Roll Dice
+# Modify dice
+# Choose the event
+
+# Phase 3: Event Phase
+# Show the name and description, move props on screen
+# Select an option from the list in the event definition
+# If the selected option has a dice requirement, roll dice
+# Display the rewards and costs
+
+# Phase 4: Relic Phase
+# Each relic you own is rolled in sequence. Boons/curses are applied.
+
+# End Phase
+# If at end phase your ship has 0 crew, the game is lost
+# Back to Exploration Phase
+
 func load_game():
 	var file = File.new()
 	if not file.file_exists(fileString):
