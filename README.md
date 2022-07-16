@@ -57,7 +57,7 @@ these may deplete supplies, damage ship, affect crew, or something else of the l
         },
         {
             "text": "Send a crew to investigate",
-            "cost": [{"resource": "crew", "value": 1}]
+            "cost": [{"resource": "crew", "value": -1}]
             "result": {
                 "text": "The sun falls below the horizon before the dinghy makes it back to the ship. The crew is gone, in their place a bright white bird's skull scoured clean by the salt water.",
                 "reward": [{"resource": "relic_4", "value": 1}]
