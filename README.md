@@ -40,3 +40,45 @@ you may spend (some kind of limited resource) on upgrading: max supply, purchasi
 ## events
 depending on the event that comes up as a result of exploration, you will be prompted with consequences, decisions, skill checks or chance rolls
 these may deplete supplies, damage ship, affect crew, or something else of the like
+
+### Sample Event Definition
+```json
+{
+    "id": 1,
+    "name": "Is that... Singing?",
+    "props": ["rocks", "dinghy"],
+    "description": "The whistling of the ocean breeze carries a haunting melody. After a moment, the lookout spots a small islet port-ward."
+    "options": [
+        {
+            "text": "Stay the course and put the wail out of your mind",
+            "result": {
+                "text": "The crew mutters at their work and tempers are high until the wailing falls out of earshot",
+                "reward": [{"resource": "morale", "value": -1}]
+            }
+        },
+        {
+            "text": "Send a crew to investigate",
+            "cost": [{"resource": "crew", "value": -1}]
+            "result": {
+                "text": "The sun falls below the horizon before the dinghy makes it back to the ship. The crew is gone, in their place a bright white bird's skull scoured clean by the salt water.",
+                "reward": [{"resource": "relic_4", "value": 1}]
+            }
+        },
+        {
+            "text": "Lead a land expedition to the islet",
+            "result": {
+                "challenge": [2, 2, 3],
+                "success": {
+                    "text": "A beautiful woman lies stretched out over the rocks, the source of the haunting wail. Upon a second glance, you recognize the body as long dead. Not even the sea birds worry at what's left. Around her neck a bleached white bird skull is strung on the tarnished remains of a silver chain, ripe for the taking",
+                    "reward": [{"resource": "relic_4", "value": 1}]
+                },
+                "failure": {
+                    "text": "The curves of her beautiful form bring to mind the sea. Her voice burrows deeply into your brain, and you cannot recall wanting anything else. The sun sets on your expedition before the cold jars you from your reverie. Your crewmates are not so lucky; their adoring faces are burned by the sun and salt, and they don't respond to your cries. You return, alone, to the ship."
+                    "reward": [{"resource": "morale", "value": -1}, {"resource": "crew", "value": -1}]
+                }
+            }
+        }
+    ]
+}
+
+```
