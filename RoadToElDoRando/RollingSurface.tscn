@@ -42,6 +42,7 @@ roughness = 0.0
 [node name="Rolling Surface" type="StaticBody" parent="."]
 collision_layer = 3
 collision_mask = 2
+input_ray_pickable = false
 physics_material_override = SubResource( 9 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Rolling Surface"]
