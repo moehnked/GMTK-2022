@@ -40,3 +40,29 @@ you may spend (some kind of limited resource) on upgrading: max supply, purchasi
 ## events
 depending on the event that comes up as a result of exploration, you will be prompted with consequences, decisions, skill checks or chance rolls
 these may deplete supplies, damage ship, affect crew, or something else of the like
+
+### Sample Event Definition
+```json
+{
+    "name": "Is that... Singing?",
+    "description": "The whistling of the ocean breeze carries a haunting melody. After a moment, the lookout spots a small islet port-ward."
+    "options": [
+        {
+            "text": "Stay the course and put the wail out of your mind",
+            "result": {
+                "text": "The crew mutters at their work and tempers are high until the wailing falls out of earshot",
+                "reward": [{"resource": "morale", "value": -1}]
+            }
+        },
+        {
+            "text": "Send a crew to investigate",
+            "cost": [{"resource": "crew", "value": 1}]
+            "result": {
+                "text": "The sun falls below the horizon before the dinghy makes it back to the ship. The crew is gone, in their place a bright white bird's skull scoured clean by the salt water.",
+                "reward": [{"resource": "relic_4", "value": 1}]
+            }
+        }, 
+    ]
+}
+
+```
