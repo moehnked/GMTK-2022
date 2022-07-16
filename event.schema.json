@@ -1,0 +1,43 @@
+{
+  "name": "Event",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string" 
+    },
+    "options": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+           "text": {
+             "type": "string"
+           },
+           "tags": {
+             "type": "array",
+             "items": {
+                "type": "string" 
+             }
+           },
+          "cost": {
+           "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "resource": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "number" 
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
