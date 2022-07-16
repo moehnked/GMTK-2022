@@ -420,9 +420,9 @@ position = Vector2( 530, 468 )
 scale = Vector2( 6.42211, 6.42211 )
 
 [node name="Ship3" parent="." instance=ExtResource( 5 )]
-position = Vector2( 350, 329 )
-rotation = 0.0758261
-scale = Vector2( 3, 3 )
+position = Vector2( 755, 356 )
+rotation = -0.0388314
+scale = Vector2( -3, 3 )
 
 [node name="WaveGroup3" parent="." instance=ExtResource( 2 )]
 position = Vector2( -331, 130 )

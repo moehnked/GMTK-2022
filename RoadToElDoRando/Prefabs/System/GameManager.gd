@@ -34,6 +34,7 @@ func get_rng():
 
 func initialize():
 	RNG.seed = gameState["seed"]
+	get_tree().call_group("GamestateObserver", "game_state_initialized")
 
 func load_game():
 	var file = File.new()
