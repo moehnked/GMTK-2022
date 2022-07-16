@@ -44,6 +44,7 @@ these may deplete supplies, damage ship, affect crew, or something else of the l
 ### Sample Event Definition
 ```json
 {
+    "id": 1,
     "name": "Is that... Singing?",
     "description": "The whistling of the ocean breeze carries a haunting melody. After a moment, the lookout spots a small islet port-ward."
     "options": [
