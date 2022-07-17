@@ -13,7 +13,7 @@ var endingPoint;
 func set_progress( travelled, left ): 
 	var progress = float(travelled) / float(left);
 	var target = $StartingPoint.position.x + $StartingPoint.position.distance_to($Port.position) * progress;
-	set_distance( left - travelled);
+	set_distance( max(left - travelled,0));
 	$Tween.interpolate_property($Ship, 'position:x', $Ship.position.x, target, 2, Tween.TRANS_SINE)
 	$Tween.start();
 # Update the leagues to go label, tween the ship progress between ship starting point and port position

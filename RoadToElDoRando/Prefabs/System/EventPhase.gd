@@ -42,6 +42,7 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_released("select") and isReadingResult:
 		isReadingResult = false
+		$ClearResult.play()
 		$DescriptionAnimated/AnimationPlayer.play("HideResults")
 	if targetEventBanner != null:
 		targetEventBanner.rect_position = targetEventBanner.rect_position.linear_interpolate($BannerPoint.position, 0.1)
@@ -83,9 +84,12 @@ func init_option(option_node, index):
 
 func parse_option_selected(n):
 	var op = event["options"][n]
+	$OptionSelected.play()
 	$ResultsText/RichTextLabel.bbcode_text = op.result.text
 	$ResultsText/RichTextLabel.bbcode_text = "[center]"+$ResultsText/RichTextLabel.bbcode_text+"[/center]"
 	$DescriptionAnimated/AnimationPlayer.play("HideOptions")
+	targetEventBanner.queue_free()
+	targetEventBanner = null
 	pass
 
 func set_viewing_options():
