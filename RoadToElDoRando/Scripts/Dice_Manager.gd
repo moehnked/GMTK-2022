@@ -39,6 +39,7 @@ func _process(delta):
 	# Spawn a single die
 	if Input.is_action_just_pressed("spawn_die"):
 		spawn_die()
+	
 
 func roll_dice ():
 	for die in dice_array:
