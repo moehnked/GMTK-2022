@@ -372,7 +372,7 @@ tracks/4/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 0.180392, 0.164706, 0.356863, 1 ) ]
 }
 
-[node name="ExplorationUnit" type="Node2D"]
+[node name="ExplorationUnit" type="Node2D" groups=["ExplorationUnit"]]
 script = ExtResource( 7 )
 
 [node name="ExpBg3" type="Sprite" parent="."]
