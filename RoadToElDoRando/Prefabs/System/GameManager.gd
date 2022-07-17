@@ -29,7 +29,7 @@ var gameState = {
 	"PortDistance":4,
 	"PortsReached": 0,
 	"CurrentDistance":0,
-	"totalDistance": 0,
+	"TotalDistance": 0,
 	"events":{}
 }
 var fileString = "user://file_data.json"

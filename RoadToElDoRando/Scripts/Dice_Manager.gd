@@ -1,7 +1,7 @@
 extends Node
 
 signal report_roll
-var exploration_unit
+var dice_button
 
 var dice_array = []
 
@@ -24,7 +24,7 @@ func _ready():
 	timer.set_one_shot(true)
 	timer.start(roll_time)
 	timer.set_paused(true)
-	exploration_unit = get_tree().get_nodes_in_group("ExplorationUnit")[0]
+	dice_button = get_tree().get_nodes_in_group("DiceButton")[0]
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -51,9 +51,8 @@ func _process(delta):
 	
 
 func request_roll (n_dice):
-	exploration_unit.enable_roll()
-#	get_tree().call_group("ExplorationUnit", "roll")
-	exploration_unit.connect("emit_roll_clicked", self, "full_roll", [n_dice], CONNECT_ONESHOT)
+	dice_button.enable_roll()
+	dice_button.connect("emit_roll_clicked", self, "full_roll", [n_dice], CONNECT_ONESHOT)
 
 
 # ask for a roll of n dice
@@ -66,7 +65,7 @@ func request_roll (n_dice):
 	# despawn the die
 # signal when all dice are done rolling
 func full_roll (n_dice):
-	if dice_array.size != 0:
+	if dice_array.size() != 0:
 		for die in dice_array:
 			despawn_die(die)
 	dice_array.clear()

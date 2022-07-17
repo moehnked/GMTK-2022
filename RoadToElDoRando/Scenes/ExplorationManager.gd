@@ -24,11 +24,12 @@ func start_phase( gameState ):
 	DiceManager.request_roll(4);
 	
 func handle_dice_roll( dice ):
+	print(dice);
 	var sum = 0;
 	for result in dice:
 		sum = sum + dice;
 	_state.CurrentDistance += sum;
-	_state.TotalDistance += sum;
+#	_state.TotalDistance += sum;
 	$ProgressTracker.set_progress(_state.CurrentDistance, _state.PortDistance);
 	end_phase();
 	
