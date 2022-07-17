@@ -21,17 +21,13 @@ far = 1575.4
 [node name="Dice Manager" type="Node" parent="."]
 script = ExtResource( 3 )
 
-[node name="Dice_d6_1" parent="Dice Manager" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.116328, 8.84849, 1.80179 )
+[node name="Dice" type="Node" parent="Dice Manager"]
 
-[node name="Dice_d6_2" parent="Dice Manager" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.116328, 8.84849, 1.80179 )
+[node name="Dice_d6_1" parent="Dice Manager/Dice" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0 )
 
-[node name="Dice_d6_3" parent="Dice Manager" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.116328, 8.84849, 1.80179 )
-
-[node name="Dice_d6_4" parent="Dice Manager" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.116328, 8.84849, 1.80179 )
+[node name="Timer" type="Timer" parent="Dice Manager"]
+one_shot = true
 
 [node name="Playmat" parent="." instance=ExtResource( 2 )]
 transform = Transform( 30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0 )

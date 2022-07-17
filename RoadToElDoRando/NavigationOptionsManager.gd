@@ -10,23 +10,24 @@ signal event_triggered
 
 var selectedOption = null
 
-export var tweenSpeed = 1.1 #Seconds to arrive on-screen
-export var dist = 320 #How far to display from center of screen
-export var vertscale = 1.2 #Distorts the y-axis of the display area up so that labels have better vertical spacing
+var tweenSpeed = 1.1 #Seconds to arrive on-screen
+var dist = 520 #How far to display from center of screen
+var vertscale = 0.8 #Distorts the y-axis of the display area up so that labels have better vertical spacing
 
 var centerpos
 
 func _ready():
-	centerpos = self.rect_position + self.rect_size/2
+	centerpos = self.rect_position + self.rect_size/2 + Vector2(0,self.rect_size.y/3)
 	SetupDisplayCurve()
+	update()
 	AddOption("Dread On Open Water","ev1")
-	AddOption("A Serpent, Writhing","ev2")
+#	AddOption("A Serpent, Writhing","ev2")
 	AddOption("The Too-Quiet Cove","ev3",["d:3|3"])
 	AddOption("Is That...Singing?","ev4",["d:1|4"])
-	AddOption("Is That...Singing?","ev4",["d:6|1|1|1"])
+#	AddOption("Is That...Singing?","ev4",["d:6|1|1|1"])
 	AddOption("A Storm In Red","ev4",["d:1|2"],"storm_safe_1","The Eye Of The Storm")
-	AddOption("Is That...Singing?","ev4",["d:3"])
-	AddOption("A Sucking Slime Sea","ev4",["d:2|2|2","c:1"])
+#	AddOption("Is That...Singing?","ev4",["d:3"])
+#	AddOption("A Sucking Slime Sea","ev4",["d:2|2|2","c:1"])
 	AddOption("Land, Ho!","ev5",["d:3|1|4"])
 	AddOption("He Who Came Before","ev0")
 	SetNavigationOptionsStart()
@@ -40,9 +41,12 @@ func _ready():
 func SetupDisplayCurve():
 
 	var c = Curve2D.new()
-	c.add_point(self.rect_size / 2 + Vector2(dist*vertscale,0).rotated(PI/2))
-	c.add_point(self.rect_size / 2 + Vector2(dist,0))
-	c.add_point(self.rect_size / 2 + Vector2(dist*vertscale,0).rotated(-PI/2))
+	c.add_point(centerpos + Vector2(200,0))
+	c.add_point(centerpos + Vector2(-600,-400))
+#	c.add_point(centerpos + Vector2(dist*1.4,0).rotated(PI - 1))
+#	c.add_point(centerpos + Vector2(dist/5,0).rotated(-PI/2 - 2))
+#	c.add_point(centerpos + Vector2(dist/5,0).rotated(-PI/2 + 2))
+#	c.add_point(centerpos + Vector2(dist*1.4,0).rotated(1))
 	$DisplayCurve.curve = c
 
 func _draw():
@@ -51,7 +55,8 @@ func _draw():
 			$DisplayCurve/DisplayFinder.unit_offset = (1.0/float(options.size()-1)) * i
 		else:
 			$DisplayCurve/DisplayFinder.unit_offset = 0.5
-		var desiredPosition = (($DisplayCurve/DisplayFinder.position) - self.rect_size/2) * 6.5 + self.rect_size/2 - options[i].rect_size/2
+#		var desiredPosition = ($DisplayCurve/DisplayFinder.position - centerpos) * 1.9 - options[i].rect_size/2 + centerpos
+		var desiredPosition = Vector2(-600,-400) - Vector2(200,0) * 10 + centerpos
 		draw_circle(desiredPosition,5,Color(1,1,0))
 
 func SetNavigationOptionsStart():
@@ -60,7 +65,8 @@ func SetNavigationOptionsStart():
 			$DisplayCurve/DisplayFinder.unit_offset = (1.0/float(options.size()-1)) * i
 		else:
 			$DisplayCurve/DisplayFinder.unit_offset = 0.5
-		var desiredPosition = (($DisplayCurve/DisplayFinder.position) - self.rect_size/2) * 10 + self.rect_size/2 - options[i].rect_size/2
+		var desiredPosition = Vector2(-600,-400) - Vector2(200,0) * 10 + centerpos
+#		var desiredPosition = (($DisplayCurve/DisplayFinder.position) - centerpos) * 10 + centerpos - options[i].rect_size/2
 		options[i].rect_position = desiredPosition
 
 func DisplayNavigationOptions():
@@ -70,7 +76,7 @@ func DisplayNavigationOptions():
 			$DisplayCurve/DisplayFinder.unit_offset = (1.0/float(options.size()-1)) * i
 		else:
 			$DisplayCurve/DisplayFinder.unit_offset = 0.5
-		var desiredPosition = $DisplayCurve/DisplayFinder.position - options[i].rect_size/2
+		var desiredPosition = $DisplayCurve/DisplayFinder.position - (options[i].rect_size/4)
 		$Tween.interpolate_property(options[i],"rect_position",options[i].rect_position,desiredPosition,tweenSpeed,Tween.TRANS_CUBIC,Tween.EASE_OUT,i*0.1)
 	$Tween.start()
 
@@ -81,7 +87,7 @@ func UndisplayNavigationOptions():
 				$DisplayCurve/DisplayFinder.unit_offset = (1.0/float(options.size()-1)) * i
 			else:
 				$DisplayCurve/DisplayFinder.unit_offset = 0.5
-			var desiredPosition = (($DisplayCurve/DisplayFinder.position) - self.rect_size/2) * 6.5 + self.rect_size/2 - options[i].rect_size/2
+			var desiredPosition = options[i].rect_position -Vector2(self.rect_size.x,0)
 #			print("Setting Undisplay position: ",desiredPosition)
 			$Tween.interpolate_property(options[i],"rect_position",options[i].rect_position,desiredPosition,tweenSpeed,Tween.TRANS_CUBIC,Tween.EASE_OUT,i*0.01)
 	#Yield for tween completion, then hide
