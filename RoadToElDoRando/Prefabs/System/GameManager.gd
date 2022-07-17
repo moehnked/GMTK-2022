@@ -120,7 +120,7 @@ func handle_phases():
 	#emit_signal("relic_phase_start");
 	phaseRef = get_tree().get_nodes_in_group("RelicPhase")[0]
 	phaseRef.call("initialize", gameState)
-	update_state(yield(self, "emit_end_phase"));
+	update_state(yield(phaseRef, "emit_end_phase"));
 		
 	# End Phase
 	# If at end phase your ship has 0 crew, the game is lost

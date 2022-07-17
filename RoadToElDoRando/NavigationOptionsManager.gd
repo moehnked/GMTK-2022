@@ -59,7 +59,7 @@ func startPhase():
 	update()
 #	AddOption("Dread On Open Water","ev1")
 #	AddOption("The Too-Quiet Cove","ev3",["d:3|3"])
-#	AddOption("Is That...Singing?","ev4",["d:1|4"])
+	AddOption("Is That...Singing?","siren", [])
 #	AddOption("A Storm In Red","ev4",["d:1|2"],"storm_safe_1","The Eye Of The Storm")
 #	AddOption("Land, Ho!","ev5",["d:3|1|4"])
 #	AddOption("He Who Came Before","ev0",["d:6"])
