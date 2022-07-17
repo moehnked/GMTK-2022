@@ -51,10 +51,13 @@ func _process(delta):
 		spawn_die()
 
 
-func request_roll (n_dice):
+func request_roll (n_dice, isRelicRoll = false):
 	var g = get_tree().get_nodes_in_group("DiceButton")
 	dice_button = g[0];
-	dice_button.enable_roll()
+	if isRelicRoll:
+		dice_button.enable_relic()
+	else:
+		dice_button.enable_roll()
 	dice_button.connect("emit_roll_clicked", self, "full_roll", [n_dice], CONNECT_ONESHOT)
 
 
