@@ -10,6 +10,9 @@ var cup_mask = 2
 var roll_strength = 120
 var reroll_strength = 40
 
+var audio_streamer
+var rng
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	side_raycasts = [$Cast_1,$Cast_2,$Cast_3,$Cast_4,$Cast_5,$Cast_6]
@@ -19,7 +22,13 @@ func _ready():
 	self.set_collision_mask_bit (dome_mask, false)
 	self.set_collision_mask_bit (cup_mask, true)
 	dome_checker = $DomeChecker
-	
+	audio_streamer = $AudioStreamPlayer
+	rng = RandomNumberGenerator.new()
+	rng.randomize()
+	var rand_num = String(rng.randi_range(1,4))
+	var path = "res://Assets/Audio/dice_rolls/wooden_dice_" + rand_num + ".mp3"
+	audio_streamer.stream = load(path)
+	audio_streamer.stream.set_loop(false)
 	
 func _process(delta):
 	if self.is_sleeping():
@@ -68,6 +77,7 @@ func roll_die (var dir: Vector3):
 	self.mode = RigidBody.MODE_RIGID
 	self.set_sleeping(false)
 	self.apply_central_impulse(dir * roll_strength)
+	audio_streamer.play()
 
 func reroll_die ():
 	self.mode = RigidBody.MODE_RIGID
