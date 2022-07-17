@@ -68,36 +68,36 @@ func handle_phases():
 	print("new round")
 	if not $music.playing:
 		ready_music()
-		
-	$ExplorationManager.start_phase(gameState);	
-
-	update_state(yield($ExplorationManager, 'end_phase'));
-
-	if gameState.CurrentDistance >= gameState.PortDistance:
-		gameState.CurrentDistance = 0
-		var phaseRef = get_tree().get_nodes_in_group("Port")[0]
-		phaseRef.initialize(gameState)
-		update_state(yield(phaseRef, 'exited_port'));
-		gameState.Phase = 0
-		return handle_phases()
-
-	var navMgr = $"../UI/NavigationOptionsManager"
-	navMgr.startPhase( gameState )
-
-	var handoffObject = yield(self, 'navigation_phase_end');
-	gameState.Phase = 2;
-
-	gameState.Phase = 3;
-	emit_signal("event_phase_start");
-	#starts Event Phase
-	var phaseRef = get_tree().get_nodes_in_group("EventPhase")[0]
-	phaseRef.call("initialize",handoffObject, gameState)
-
-	update_state(yield(phaseRef, "emit_end_phase"));
+#
+#	$ExplorationManager.start_phase(gameState);	
+#
+#	update_state(yield($ExplorationManager, 'end_phase'));
+#
+#	if gameState.CurrentDistance >= gameState.PortDistance:
+#		gameState.CurrentDistance = 0
+#		var phaseRef = get_tree().get_nodes_in_group("Port")[0]
+#		phaseRef.initialize(gameState)
+#		update_state(yield(phaseRef, 'exited_port'));
+#		gameState.Phase = 0
+#		return handle_phases()
+#
+#	var navMgr = $"../UI/NavigationOptionsManager"
+#	navMgr.startPhase( gameState )
+#
+#	var handoffObject = yield(self, 'navigation_phase_end');
+#	gameState.Phase = 2;
+#
+#	gameState.Phase = 3;
+#	emit_signal("event_phase_start");
+#	#starts Event Phase
+#	var phaseRef = get_tree().get_nodes_in_group("EventPhase")[0]
+#	phaseRef.call("initialize",handoffObject, gameState)
+#
+#	update_state(yield(phaseRef, "emit_end_phase"));
 
 
 	gameState.Phase = 4;
-	phaseRef = get_tree().get_nodes_in_group("RelicPhase")[0]
+	var phaseRef = get_tree().get_nodes_in_group("RelicPhase")[0]
 	phaseRef.call("initialize", gameState)
 	update_state(yield(phaseRef, "emit_end_phase"));
 		
@@ -105,6 +105,7 @@ func handle_phases():
 	gameState.Phase = 0
 	if gameState.Ship.Crew <= 0:
 		print("game over")
+		get_tree().change_scene("res://Scenes/loseScreen.tscn")
 		return true;
 	elif gameState.Ship.Supplies > 0:
 		gameState.Ship.Supplies -= gameState.Ship.Crew
@@ -114,6 +115,10 @@ func handle_phases():
 		gameState.Ship.Crew -= 1
 		get_tree().call_group("CrewDisplay", "update_text", gameState.Ship.Crew)
 		$sfx_crewDies.play()
+		if gameState.Ship.Crew <= 0:
+			print("game over")
+			get_tree().change_scene("res://Scenes/loseScreen.tscn")
+			return true;
 	print("round end")
 	return handle_phases();
 
