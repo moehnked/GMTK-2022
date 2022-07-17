@@ -79,5 +79,7 @@ collision_mask = 8
 transform = Transform( 1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0 )
 shape = SubResource( 6 )
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
 [connection signal="body_entered" from="DomeChecker" to="." method="_on_DomeChecker_body_entered"]
 [connection signal="body_exited" from="DomeChecker" to="." method="_on_DomeChecker_body_exited"]

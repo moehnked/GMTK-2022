@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/wooden_dice_2.mp3-bea3848cd7f8db19c0d9db01e68891a3.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/dice_rolls/wooden_dice_2.mp3"
+dest_files=[ "res://.import/wooden_dice_2.mp3-bea3848cd7f8db19c0d9db01e68891a3.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
