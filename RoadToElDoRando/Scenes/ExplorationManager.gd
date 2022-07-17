@@ -31,6 +31,7 @@ func handle_dice_roll( dice ):
 	
 func end_phase():
 	GameManager.emit_signal('end_phase', _state);
+	$AnimationPlayer.play("EndPhase");
 	
 # BEGIN
 # Animate controls in
