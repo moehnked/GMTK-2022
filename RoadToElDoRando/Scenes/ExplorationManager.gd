@@ -20,7 +20,7 @@ func start_phase( gameState ):
 	$AnimationPlayer.play("BeginPhase");
 	$ProgressTracker.set_progress(gameState.CurrentDistance, gameState.PortDistance)
 	DiceManager.connect('report_roll', self, 'handle_dice_roll');
-	DiceManager.request_roll(4);
+	DiceManager.request_roll(gameState.Ship.Crew);
 	
 func handle_dice_roll( dice ):
 	DiceManager.disconnect('report_roll', self, 'handle_dice_roll');

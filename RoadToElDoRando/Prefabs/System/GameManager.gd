@@ -84,7 +84,7 @@ func handle_phases():
 		return true;
 		
 	var navMgr = $"../UI/NavigationOptionsManager"
-	navMgr.startPhase()
+	navMgr.startPhase( gameState )
 	
 	var handoffObject = yield(self, 'navigation_phase_end');
 		

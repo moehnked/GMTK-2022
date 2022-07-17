@@ -7,7 +7,7 @@ var dome_checker
 var dome_mask = 3
 var cup_mask = 2
 
-var roll_strength = 70
+var roll_strength = 120
 var reroll_strength = 40
 
 # Called when the node enters the scene tree for the first time.

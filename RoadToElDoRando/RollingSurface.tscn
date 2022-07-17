@@ -40,6 +40,7 @@ roughness = 0.0
 [node name="Playmat" type="Spatial"]
 
 [node name="Rolling Surface" type="StaticBody" parent="."]
+visible = false
 collision_layer = 3
 collision_mask = 2
 input_ray_pickable = false
@@ -54,11 +55,13 @@ mesh = SubResource( 2 )
 material/0 = SubResource( 3 )
 
 [node name="Dome" type="StaticBody" parent="."]
+visible = false
 collision_layer = 8
 collision_mask = 0
 
 [node name="Icosphere" type="MeshInstance" parent="Dome"]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
+visible = false
 mesh = SubResource( 7 )
 skeleton = NodePath("")
 material/0 = null
