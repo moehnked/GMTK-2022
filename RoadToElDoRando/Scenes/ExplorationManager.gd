@@ -13,11 +13,15 @@ var _state;
 func _ready():
 	DiceManager = get_tree().get_nodes_in_group('dice_manager')[0];
 	GameManager = get_tree().get_nodes_in_group('game_manager')[0];
+	
+	yield(get_tree().create_timer(2), 'timeout');
+	start_phase(GameManager.gameState);
 
 func start_phase( gameState ):
 	_state = gameState;
 	$AnimationPlayer.play("BeginPhase");
-	connect('roll_finished', DiceManager, 'handle_dice_roll', [], CONNECT_ONESHOT);
+	DiceManager.connect('report_roll', self, 'handle_dice_roll', [], CONNECT_ONESHOT);
+	DiceManager.request_roll(4);
 	
 func handle_dice_roll( dice ):
 	var sum = 0;

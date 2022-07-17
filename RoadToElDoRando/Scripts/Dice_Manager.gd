@@ -49,6 +49,7 @@ func _process(delta):
 	# Spawn a single die
 	if Input.is_action_just_pressed("spawn_die"):
 		spawn_die()
+	
 
 func request_roll (n_dice):
 	exploration_unit.enable_roll()
