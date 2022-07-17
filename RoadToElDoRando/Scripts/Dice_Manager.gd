@@ -1,5 +1,7 @@
 extends Node
 
+signal report_roll
+var exploration_unit
 
 var dice_array = []
 
@@ -14,7 +16,6 @@ var spawn_position = Vector3(0,10,0)
 var timer
 const roll_time = 3
 
-var exploration_unit
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -83,7 +84,7 @@ func initial_roll():
 
 func roll_remaining_dice ():
 	for die in dice_array:
-		die.roll_dice_random()
+		die.reroll_die()
 	timer.set_paused(false)
 	timer.start(roll_time)
 
