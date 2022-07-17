@@ -216,6 +216,7 @@ anims/fadeout = SubResource( 5 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
+volume_db = -10.0
 autoplay = true
 
 [connection signal="emit_clicked" from="menuOptionContainer/NewGame" to="." method="new_game"]

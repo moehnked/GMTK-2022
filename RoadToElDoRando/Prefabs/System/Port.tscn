@@ -662,15 +662,17 @@ rect_scale = Vector2( 0.753922, 0.753922 )
 theme = ExtResource( 4 )
 text = "Supplies"
 
-[node name="Timer" type="Timer" parent="Container/SuppliesDisplay"]
-wait_time = 0.2
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+volume_db = -15.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 4 )
 anims/default = SubResource( 3 )
 anims/outro = SubResource( 5 )
 
-[connection signal="timeout" from="Container/SuppliesDisplay/Timer" to="." method="replenish_supplies"]
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="replenish_supplies"]
