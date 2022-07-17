@@ -57,6 +57,10 @@ func ready_event_list():
 	var file = File.new()
 	file.open("res://Data/eventslist.json", File.READ)
 	eventlist = parse_json(file.get_as_text())
+	print("Loaded eventlist")
+
+func getEventlist():
+	return eventlist
 
 func setup_event():
 	event = eventlist[targetEventBanner.eventID]
