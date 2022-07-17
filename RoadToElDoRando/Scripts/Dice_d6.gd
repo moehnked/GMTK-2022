@@ -5,6 +5,10 @@ var side_raycasts = []
 var passed_through_dome
 var dome_checker
 var dome_mask = 3
+var cup_mask = 2
+
+var roll_strength = 70
+var reroll_strength = 40
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,6 +17,7 @@ func _ready():
 	## the die will not interact with the dome the first time it hits it
 	passed_through_dome = false
 	self.set_collision_mask_bit (dome_mask, false)
+	self.set_collision_mask_bit (cup_mask, true)
 	dome_checker = $DomeChecker
 	
 	
@@ -62,7 +67,7 @@ func get_selected_collider():
 func roll_die (var dir: Vector3):
 	self.mode = RigidBody.MODE_RIGID
 	self.set_sleeping(false)
-	self.apply_central_impulse(dir * 100)
+	self.apply_central_impulse(dir * roll_strength)
 
 func reroll_die ():
 	self.mode = RigidBody.MODE_RIGID
@@ -71,7 +76,7 @@ func reroll_die ():
 	force_vector.rotated(Vector3.LEFT, 2 * PI * randf())
 	force_vector.rotated(Vector3.UP, 2 * PI * randf())
 	force_vector.rotated(Vector3.FORWARD, 2 * PI * randf())
-	self.apply_central_impulse(force_vector * 100)
+	self.apply_central_impulse(force_vector * reroll_strength)
 
 
 func _on_DomeChecker_body_entered(body):
@@ -84,3 +89,4 @@ func _on_DomeChecker_body_exited(body):
 	if body.name == "Dome":
 		if passed_through_dome:
 			self.set_collision_mask_bit(dome_mask,true)
+			self.set_collision_mask_bit(cup_mask,false)

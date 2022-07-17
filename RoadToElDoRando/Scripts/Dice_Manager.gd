@@ -10,10 +10,11 @@ var dice_array = []
 var final_rolls = {}
 
 var die_prefab = preload("res://Dice_d6.tscn")
-var spawn_position = Vector3(0,20,0)
+var test_spawn_position = Vector3(0,20,0)
+var spawn_position = Vector3(0,5,-30)
 
 var timer
-const roll_time = 6
+const roll_time = 5
 
 
 # Called when the node enters the scene tree for the first time.
@@ -28,23 +29,22 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	# Roll all dice in the dome
-	if Input.is_action_just_pressed("roll_dice"):
+	if Input.is_action_just_pressed("roll_dice"): # space
 		roll_remaining_dice()
+		
+	# Roll all dice from the cup
+	if Input.is_action_just_pressed("initial_roll"): # r
+		full_roll(6)
 
 	if timer.is_stopped():
 		read_dice_values()
 
 	# accept and read all values in the dome
-	if Input.is_action_just_pressed("finalize_roll"):
-		finalize_roll()
-
-	# Read the face values of all dice in the dome
-	if Input.is_action_just_pressed("read_value"):
-		for die in dice_array:
-			print("in Manager: ", die.read_face())
+	if Input.is_action_just_pressed("finalize_roll"): # w
+		print(finalize_roll())
 
 	# Spawn a single die
-	if Input.is_action_just_pressed("spawn_die"):
+	if Input.is_action_just_pressed("spawn_die"): # e
 		spawn_die()
 
 
@@ -68,7 +68,8 @@ func full_roll (n_dice):
 	if dice_array.size() != 0:
 		for die in dice_array:
 			despawn_die(die)
-	dice_array.clear()
+			dice_array.erase(die)
+		print(dice_array)
 	final_rolls.clear()
 	spawn_dice(n_dice)
 	initial_roll()
@@ -78,7 +79,12 @@ func emit_report_roll():
 
 #### TODO Change later to get actual first roll ####
 func initial_roll():
-	roll_remaining_dice()
+	for die in dice_array:
+		die.roll_die(get_spawn_roll(die.transform.origin))
+	timer.set_paused(false)
+	timer.start(roll_time)
+	
+		
 
 
 func roll_remaining_dice ():
@@ -94,22 +100,16 @@ func read_dice_values ():
 	while (dice_array.size() > 0):
 		var die = dice_array.pop_back()
 		var value = die.read_face()
-		# if null, reroll
+		## if null, reroll
 		if value == null:
 			reroll.append(die)
-		# else, count
+		## else, count
 		else:
 			final_rolls[die] = value
 			despawn_die(die)
 	dice_array = reroll
 	if dice_array.size() != 0:
-#		roll_remaining_dice()
-		var num = dice_array.size()
-		print("Dead dice, respawning ",num," dice")
-		for die in dice_array:
-			despawn_die(die)
-		timer.start(roll_time)
-		spawn_dice(num)
+		roll_remaining_dice()
 		return false
 	else:
 		emit_report_roll()
@@ -123,9 +123,8 @@ func finalize_roll ():
 	return final_rolls
 
 func despawn_die (die):
-	print("DIE DIE DIE")
-	die.free()
 	dice_array.erase(die)
+	die.free()
 
 
 func spawn_dice (n):
@@ -137,3 +136,6 @@ func spawn_die():
 	die.transform.origin = spawn_position
 	add_child(die)
 	dice_array.append(die)
+
+func get_spawn_roll(pos):
+	return (-pos).normalized()

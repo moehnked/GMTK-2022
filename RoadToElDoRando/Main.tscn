@@ -1,19 +1,20 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
+[ext_resource path="res://Prefabs/Objects/Cup.tscn" type="PackedScene" id=1]
 [ext_resource path="res://RollingSurface.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/Dice_Manager.gd" type="Script" id=3]
 
 [node name="Main" type="Spatial"]
 
 [node name="Top-Down" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 93.35, 0 )
+transform = Transform( -0.5, 0.866025, 3.78552e-08, 0, -4.37114e-08, 1, 0.866025, 0.5, 2.18557e-08, 0, 93.35, 0 )
 projection = 1
+current = true
 size = 35.0
 near = 1.0
 
 [node name="Camera2" type="Camera" parent="."]
 transform = Transform( -4.37114e-08, -0.5, 0.866025, 0, 0.866025, 0.5, -1, 2.18557e-08, -3.78552e-08, 30.2593, 21.0797, 0.290274 )
-current = true
 near = 0.03
 far = 1575.4
 
@@ -26,3 +27,6 @@ script = ExtResource( 3 )
 
 [node name="Playmat" parent="." instance=ExtResource( 2 )]
 transform = Transform( 40, 0, 0, 0, 30, 0, 0, 0, 40, 0, 0, 0 )
+
+[node name="Cup" parent="." instance=ExtResource( 1 )]
+transform = Transform( 10, 0, 0, 0, -6.55671e-07, -5, 0, 15, -2.18557e-07, 0, 5, -24 )
