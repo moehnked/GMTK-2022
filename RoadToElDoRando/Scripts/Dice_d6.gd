@@ -42,7 +42,10 @@ func read_face ():
 func select_die ():
 	var die = get_selected_collider()
 	if die != null:
-		die.roll_die()
+		#TODO: deez nutz
+		#we'll come back to this 70090 years from now
+		#die.roll_die()
+		pass
 	
 func get_selected_collider():
 	var ray_length = 500
