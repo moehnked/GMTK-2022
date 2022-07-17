@@ -13,8 +13,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 1
 script = ExtResource( 1 )
-dist = 400
-vertscale = 1.01
 
 [node name="Tween" type="Tween" parent="."]
 
