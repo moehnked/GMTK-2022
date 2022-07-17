@@ -85,7 +85,7 @@ func randomize_roll(dir, _rng = RandomNumberGenerator.new()):
 	_rng.randomize()
 	var rand = Vector3.ZERO
 	
-	self.angular_damp = _rng.randf_range(-1.0, -.9)
+#	self.angular_damp = _rng.randf_range(-1.0, -.9)
 	
 	rand.x = _rng.randf_range(-PI, PI)
 	rand.y = _rng.randf_range(-PI, PI)
