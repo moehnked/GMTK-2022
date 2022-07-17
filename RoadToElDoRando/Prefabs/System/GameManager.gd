@@ -17,7 +17,7 @@ signal exited_port
 var gameState = {
 	"seed":0,
 	"Phase": 0,
-	"Relics":{},
+	"Relics":0,
 	"Ship":{
 		"Supplies":10,
 		"Crew":5,
@@ -109,15 +109,18 @@ func handle_phases():
 	emit_signal("event_phase_start");
 	
 	#starts Event Phase
-	get_tree().call_group("EventPhase","initialize",handoffObject, gameState)
-
-	update_state(yield(self, "event_phase_end"));
+	var phaseRef = get_tree().get_nodes_in_group("EventPhase")[0]
+	phaseRef.call("initialize",handoffObject, gameState)
+	
+	update_state(yield(phaseRef, "emit_end_phase"));
 	
 	# Phase 4: Relic Phase
 	# Each relic you own is rolled in sequence. Boons/curses are applied.
 	gameState.Phase = 3;
-	emit_signal("relic_phase_start");
-	update_state(yield(self, "relic_phase_end"));
+	#emit_signal("relic_phase_start");
+	phaseRef = get_tree().get_nodes_in_group("RelicPhase")[0]
+	phaseRef.call("initialize", gameState)
+	update_state(yield(self, "emit_end_phase"));
 		
 	# End Phase
 	# If at end phase your ship has 0 crew, the game is lost
