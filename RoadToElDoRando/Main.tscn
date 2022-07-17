@@ -10,7 +10,7 @@
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 93.35, 0 )
 projection = 1
 current = true
-size = 100.0
+size = 35.0
 near = 1.0
 
 [node name="Camera2" type="Camera" parent="."]
@@ -31,3 +31,4 @@ one_shot = true
 
 [node name="Playmat" parent="." instance=ExtResource( 2 )]
 transform = Transform( 30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0 )
+visible = false

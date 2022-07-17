@@ -13,8 +13,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 1
 script = ExtResource( 1 )
-dist = 400
-vertscale = 1.01
 
 [node name="Tween" type="Tween" parent="."]
 
@@ -23,6 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="TextureRect" type="TextureRect" parent="CenterContainer"]
+visible = false
 margin_left = 928.0
 margin_top = 508.0
 margin_right = 992.0
@@ -37,3 +36,9 @@ curve = SubResource( 1 )
 [node name="DisplayFinder" type="PathFollow2D" parent="DisplayCurve"]
 position = Vector2( 932, 241 )
 rotation = 0.94201
+
+[node name="EventLocation" type="Control" parent="."]
+margin_left = 957.0
+margin_top = 847.0
+margin_right = 957.0
+margin_bottom = 847.0
