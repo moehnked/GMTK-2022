@@ -7,7 +7,7 @@ var dome_checker
 var dome_mask = 3
 var cup_mask = 2
 
-var roll_strength = 80
+var roll_strength = 90
 var reroll_strength = 40
 
 var audio_streamer
@@ -74,15 +74,38 @@ func get_selected_collider():
 	return null
 	
 func roll_die (var dir: Vector3, _rng = RandomNumberGenerator.new()):
-	_rng.randomize()
-	var initvellim = 4
+	
 	self.mode = RigidBody.MODE_RIGID
 	self.set_sleeping(false)
-	self.transform.origin += Vector3(_rng.randf_range(-initvellim,initvellim),_rng.randf_range(-initvellim,initvellim),_rng.randf_range(-initvellim,initvellim))
+	dir = randomize_roll(dir)
 	self.apply_central_impulse(dir * roll_strength)
-	self.angular_velocity = Vector3(_rng.randf_range(-initvellim,initvellim),_rng.randf_range(-initvellim,initvellim),_rng.randf_range(-initvellim,initvellim))
-	self.angular_damp = _rng.randf_range(-1.0, -.9)
 	audio_streamer.play()
+
+func randomize_roll(dir, _rng = RandomNumberGenerator.new()):
+	_rng.randomize()
+	var rand = Vector3.ZERO
+	
+	self.angular_damp = _rng.randf_range(-1.0, -.9)
+	
+	rand.x = _rng.randf_range(-PI, PI)
+	rand.y = _rng.randf_range(-PI, PI)
+	rand.z = _rng.randf_range(-PI, PI)
+	self.angular_velocity = rand
+	
+	rand.x = _rng.randf_range(-2,2)
+	rand.y = _rng.randf_range(-2,2)
+	rand.z = _rng.randf_range(-2,2)
+	self.transform.origin += rand
+	
+	var min_angle = -0.5 * PI
+	var max_angle = 0.5 * PI
+	dir.rotated(Vector3.RIGHT, _rng.randf_range(min_angle, max_angle))
+	dir.rotated(Vector3.UP, _rng.randf_range(min_angle, max_angle))
+	dir.rotated(Vector3.BACK, _rng.randf_range(min_angle, max_angle))
+	return dir
+	
+	
+	
 
 func reroll_die ():
 	self.mode = RigidBody.MODE_RIGID

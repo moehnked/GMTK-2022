@@ -30,4 +30,4 @@ script = ExtResource( 3 )
 transform = Transform( 40, 0, 0, 0, 30, 0, 0, 0, 40, 0, 0, 0 )
 
 [node name="Cup" parent="." instance=ExtResource( 1 )]
-transform = Transform( 10, 0, 0, 0, -6.55671e-07, -5, 0, 15, -2.18557e-07, 0, 5, -24 )
+transform = Transform( 10, 0, 0, 0, -6.55671e-07, -5, 0, 15, -2.18557e-07, 0, 5, -22.2606 )
