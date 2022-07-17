@@ -52,8 +52,10 @@ func startPhase( gameState ):
 	centerpos = self.rect_position + self.rect_size/2 + self.rect_size/5
 #	for x in range(30):
 	var elist = generateEventList()
+	var flag =true
 	for e in elist:
-		AddOptionFromEventDict(elist[e])
+		AddOptionFromEventDict(elist[e],flag)
+		flag = false
 	SetupDisplayCurve()
 	update()
 #	AddOption("Dread On Open Water","ev1")
@@ -71,9 +73,11 @@ func startPhase( gameState ):
 	diceMgr.request_roll( gameState.ship.crew );
 #	update()
 
-func AddOptionFromEventDict(ev):
+func AddOptionFromEventDict(ev,flg):
 	var newop = option.instance()
 	var newreq = generateOptionCost(ev[0]['score'],true)
+	if flg:
+		newreq = []
 	
 	var tf = null
 	var tfn = null
