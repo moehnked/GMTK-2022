@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Prefabs/System/GameManager.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/ExplorationManager.tscn" type="PackedScene" id=2]
@@ -12,6 +12,12 @@
 [ext_resource path="res://Prefabs/System/RelicPhase.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Prefabs/System/Port.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Prefabs/UI/maskTransition.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/RelicDisplay.gd" type="Script" id=13]
+[ext_resource path="res://Assets/Sprites/UI/ProgressBar/ring.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Sprites/UI/ProgressBar/ring_inner.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Sprites/UI/ProgressBar/ring_bg.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Sprites/publicdomainPack/skull.png" type="Texture" id=17]
+[ext_resource path="res://Assets/UI/defaultTheme.tres" type="Theme" id=18]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -50,6 +56,62 @@ position = Vector2( 1746, 98 )
 
 [node name="CrewDisplay" parent="GameManager" instance=ExtResource( 7 )]
 position = Vector2( 146, 107 )
+
+[node name="RelicDisplay" type="Node2D" parent="GameManager" groups=["CrewDisplay"]]
+position = Vector2( 320, 107 )
+scale = Vector2( 0.748, 0.748 )
+script = ExtResource( 13 )
+
+[node name="RingInner" type="Sprite" parent="GameManager/RelicDisplay"]
+modulate = Color( 0.517647, 0.815686, 0.368627, 1 )
+texture = ExtResource( 15 )
+
+[node name="RingBg" type="Sprite" parent="GameManager/RelicDisplay"]
+modulate = Color( 0.211765, 0, 0.682353, 0.556863 )
+texture = ExtResource( 16 )
+
+[node name="Ring" type="Sprite" parent="GameManager/RelicDisplay"]
+texture = ExtResource( 14 )
+
+[node name="RelicLabel" type="Label" parent="GameManager/RelicDisplay"]
+margin_left = -44.1176
+margin_top = -46.7914
+margin_right = 61.8824
+margin_bottom = 62.2086
+rect_scale = Vector2( 0.840986, 0.840986 )
+theme = ExtResource( 18 )
+text = "2"
+align = 1
+
+[node name="SubIcon" type="Node2D" parent="GameManager/RelicDisplay"]
+position = Vector2( 50.8021, 70.8556 )
+scale = Vector2( 0.454144, 0.454144 )
+
+[node name="RingInner" type="Sprite" parent="GameManager/RelicDisplay/SubIcon"]
+modulate = Color( 0.517647, 0.815686, 0.368627, 1 )
+texture = ExtResource( 15 )
+
+[node name="RingBg" type="Sprite" parent="GameManager/RelicDisplay/SubIcon"]
+modulate = Color( 0.211765, 0, 0.682353, 1 )
+texture = ExtResource( 16 )
+
+[node name="Ring" type="Sprite" parent="GameManager/RelicDisplay/SubIcon"]
+texture = ExtResource( 14 )
+
+[node name="Skull" type="Sprite" parent="GameManager/RelicDisplay/SubIcon"]
+position = Vector2( 0, 2.94378 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 17 )
+
+[node name="Label" type="Label" parent="GameManager/RelicDisplay/SubIcon"]
+visible = false
+margin_left = -47.1004
+margin_top = -88.3133
+margin_right = 15.8996
+margin_bottom = 20.6867
+rect_scale = Vector2( 1.5583, 1.5583 )
+theme = ExtResource( 18 )
+text = "2"
 
 [node name="ExplorationManager" parent="GameManager" instance=ExtResource( 2 )]
 
