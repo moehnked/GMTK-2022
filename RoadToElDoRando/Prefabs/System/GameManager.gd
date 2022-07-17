@@ -19,11 +19,8 @@ var gameState = {
 	"Phase": 0,
 	"Relics":0,
 	"Ship":{
-		"ShipType":{},
 		"Supplies":10,
-		"Crew":[],
-		"Hull":5,
-		"Statuses":{}
+		"Crew":5,
 	},
 	"Round":0,
 	"PortDistance": 30,
@@ -51,6 +48,7 @@ func get_rng():
 func initialize():
 	RNG.seed = gameState["seed"]
 	get_tree().call_group("GamestateObserver", "game_state_initialized")
+	update_state( gameState )
 
 # Necessary "Scenes"
 # Exploration Phase
@@ -65,6 +63,8 @@ func initialize():
 
 func update_state( data ):
 	gameState = data;
+	$SuppliesDisplay.update_text( gameState.Ship.Supplies )
+	$CrewDisplay.update_text( gameState.Ship.Crew )
 	pass
 	
 func handle_phases():

@@ -37,7 +37,7 @@ metallic = 0.31
 metallic_specular = 0.0
 roughness = 0.0
 
-[node name="Spatial" type="Spatial"]
+[node name="Playmat" type="Spatial"]
 
 [node name="Rolling Surface" type="StaticBody" parent="."]
 collision_layer = 3
@@ -50,7 +50,6 @@ shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Rolling Surface"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
-visible = false
 mesh = SubResource( 2 )
 material/0 = SubResource( 3 )
 
@@ -60,7 +59,6 @@ collision_mask = 0
 
 [node name="Icosphere" type="MeshInstance" parent="Dome"]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
-visible = false
 mesh = SubResource( 7 )
 skeleton = NodePath("")
 material/0 = null
