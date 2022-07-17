@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/UI/defaultTheme.tres" type="Theme" id=1]
+[ext_resource path="res://Assets/Sprites/UI/region2.png" type="Texture" id=2]
+[ext_resource path="res://Prefabs/UI/eventOption.gd" type="Script" id=3]
+
+[node name="Option1" type="Sprite"]
+self_modulate = Color( 0.701961, 0.690196, 0.764706, 1 )
+light_mask = 4
+position = Vector2( 703.429, 182.237 )
+scale = Vector2( 0.93463, 0.93463 )
+z_index = -1
+texture = ExtResource( 2 )
+flip_v = true
+script = ExtResource( 3 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+light_mask = 4
+margin_left = -165.0
+margin_top = -21.4745
+margin_right = 1075.0
+margin_bottom = 204.526
+rect_scale = Vector2( 0.34093, 0.34093 )
+rect_clip_content = false
+theme = ExtResource( 1 )
+bbcode_enabled = true
+bbcode_text = "hello"
+text = "hello"
+scroll_active = false
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = -199.0
+margin_top = -26.0
+margin_right = 247.0
+margin_bottom = 81.0
+mouse_default_cursor_shape = 2
+
+[connection signal="mouse_entered" from="Panel" to="." method="_on_Panel_mouse_entered"]
+[connection signal="mouse_exited" from="Panel" to="." method="_on_Panel_mouse_exited"]
