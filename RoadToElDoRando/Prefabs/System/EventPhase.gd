@@ -107,7 +107,7 @@ func update_resource(r):
 	if "value" in r:
 		gameState["ship"][r.resource] += r.value
 	elif "percent" in r:
-		gameState["ship"][r.resource] *= r.percent
+		gameState["ship"][r.resource] = floor(gameState["ship"][r.resource] * r.percent)
 
 func set_viewing_options():
 	isReadingResult = true

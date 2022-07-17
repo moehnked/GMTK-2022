@@ -62,6 +62,7 @@ func update_state( data ):
 	gameState = data;
 	$SuppliesDisplay.update_text( gameState.ship.supplies )
 	$CrewDisplay.update_text( gameState.ship.crew )
+	$RelicDisplay.update_text( gameState.ship.relic )
 	pass
 	
 func handle_phases():
@@ -112,7 +113,7 @@ func handle_phases():
 		get_tree().call_group("SuppliesDisplay", "update_text", gameState.ship.supplies)
 		$sfx_daily_consume.play()
 	else:
-		gameState.ship.crew -= 1
+		gameState.ship.crew = max(0, gameState.ship.crew - 1)
 		get_tree().call_group("CrewDisplay", "update_text", gameState.ship.crew)
 		$sfx_crewDies.play()
 		if gameState.ship.crew <= 0:
