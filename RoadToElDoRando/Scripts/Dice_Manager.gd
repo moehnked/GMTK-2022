@@ -11,7 +11,7 @@ var dice_array = []
 var final_rolls = {}
 
 var die_prefab = preload("res://Dice_d6.tscn")
-var spawn_position = Vector3(0,10,0)
+var spawn_position = Vector3(0,4,0)
 
 var timer
 const roll_time = 6
@@ -112,6 +112,8 @@ func read_dice_values ():
 		return false
 	else:
 		emit_report_roll()
+		for die in dice_array:
+			despawn_die(die)
 		timer.stop()
 		return true
 
