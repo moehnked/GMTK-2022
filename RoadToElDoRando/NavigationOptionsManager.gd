@@ -4,6 +4,8 @@ extends Control
 var option = preload("res://Prefabs/UI/NavigationOption.tscn")
 var options = []
 
+onready var gamemanager = get_node("/root/GameManager")
+
 var fireemitter = preload("res://Prefabs/Environmental/Firebolt.tscn")
 
 signal event_triggered
@@ -17,19 +19,17 @@ var vertscale = 0.8 #Distorts the y-axis of the display area up so that labels h
 var centerpos
 
 func _ready():
-	centerpos = self.rect_position + self.rect_size/2 + Vector2(0,self.rect_size.y/3)
+	centerpos = self.rect_position + self.rect_size/2 + self.rect_size/4
+	for x in range(30):
+		generateEventList()
 	SetupDisplayCurve()
 	update()
 	AddOption("Dread On Open Water","ev1")
-#	AddOption("A Serpent, Writhing","ev2")
 	AddOption("The Too-Quiet Cove","ev3",["d:3|3"])
 	AddOption("Is That...Singing?","ev4",["d:1|4"])
-#	AddOption("Is That...Singing?","ev4",["d:6|1|1|1"])
 	AddOption("A Storm In Red","ev4",["d:1|2"],"storm_safe_1","The Eye Of The Storm")
-#	AddOption("Is That...Singing?","ev4",["d:3"])
-#	AddOption("A Sucking Slime Sea","ev4",["d:2|2|2","c:1"])
 	AddOption("Land, Ho!","ev5",["d:3|1|4"])
-	AddOption("He Who Came Before","ev0")
+	AddOption("He Who Came Before","ev0",["d:6"])
 	SetNavigationOptionsStart()
 	update()
 	yield(get_tree().create_timer(0.5), "timeout")
@@ -43,10 +43,6 @@ func SetupDisplayCurve():
 	var c = Curve2D.new()
 	c.add_point(centerpos + Vector2(200,0))
 	c.add_point(centerpos + Vector2(-600,-400))
-#	c.add_point(centerpos + Vector2(dist*1.4,0).rotated(PI - 1))
-#	c.add_point(centerpos + Vector2(dist/5,0).rotated(-PI/2 - 2))
-#	c.add_point(centerpos + Vector2(dist/5,0).rotated(-PI/2 + 2))
-#	c.add_point(centerpos + Vector2(dist*1.4,0).rotated(1))
 	$DisplayCurve.curve = c
 
 func _draw():
@@ -99,6 +95,9 @@ func AddOption(n,ev,unlock=null,ct=null,ctn=null):
 	options.append(newop)
 	self.add_child(newop)
 
+func generateEventEntry(eventdict):
+	pass
+
 func RemoveOption(op):
 	if op in options:
 		options.erase(op)
@@ -114,7 +113,7 @@ func SelectOption(op):
 
 func RaiseEvent(op):
 	UndisplayNavigationOptions()
-#	emit_signal("end_phase",op)
+	GameManager.emit_signal("end_phase",2)
 	print("Activated Event: ",op.eventID)
 
 func dice_roll_effect(ary):
@@ -144,3 +143,33 @@ func firebolt(op):
 	bolt.process_material.orbit_velocity = 0.0
 	yield(get_tree().create_timer(1),"timeout")
 	bolt.queue_free()
+
+
+var eventlist = ["ev1","ev2","ev3","ev4","ev5","ev6","ev7","ev8","ev9","ev10"]
+
+func generateEventList():
+	var rng = GameManager.get_rng()
+	rng.randomize()
+	var events = {}
+	var options_num = [1,2,2,2,3,3,3,3,4,4,5,5] #How many events to generate
+	var req_num = [4,3,2,2,2,2,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0]
+	
+	#Roll on a cascade of lists to determine the following:
+	#Overall vibe (lots of calamity, lots of rest)
+	#Check to make sure there's at least one no-cost option. if not, add a calamity
+	var n = options_num[rng.randi()%options_num.size()-1]
+	print("Number of events: ",n)
+	for i in range(n+1):
+		var rndindex = round(rng.randi() % eventlist.size()-1)
+		var chosenEvent = eventlist[rndindex]
+		var requirementsNum = req_num[rng.randi() % req_num.size()-1]
+		var requirements = []
+		for j in range(requirementsNum):
+			requirements.append(rng.randi()%7)
+		#Check if the event has a transform, and if so, whether it passes the 50% chance to transform instead of lock
+		
+		events[chosenEvent] = requirements
+	
+	var isNoCostOption = false
+	print(events)
+	return events
