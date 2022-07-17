@@ -7,7 +7,7 @@ var dome_checker
 var dome_mask = 3
 var cup_mask = 2
 
-var roll_strength = 100
+var roll_strength = 80
 var reroll_strength = 40
 
 var audio_streamer
@@ -74,11 +74,14 @@ func get_selected_collider():
 	return null
 	
 func roll_die (var dir: Vector3, _rng = RandomNumberGenerator.new()):
+	_rng.randomize()
+	var initvellim = 4
 	self.mode = RigidBody.MODE_RIGID
 	self.set_sleeping(false)
+	self.transform.origin += Vector3(_rng.randf_range(-initvellim,initvellim),_rng.randf_range(-initvellim,initvellim),_rng.randf_range(-initvellim,initvellim))
 	self.apply_central_impulse(dir * roll_strength)
-	var initvellim = 2
 	self.angular_velocity = Vector3(_rng.randf_range(-initvellim,initvellim),_rng.randf_range(-initvellim,initvellim),_rng.randf_range(-initvellim,initvellim))
+	self.angular_damp = _rng.randf_range(-1.0, -.9)
 	audio_streamer.play()
 
 func reroll_die ():

@@ -10,7 +10,7 @@ script = ExtResource( 2 )
 margin_right = 1930.0
 margin_bottom = 1088.0
 stream = ExtResource( 1 )
-volume_db = -1.0
+volume_db = -15.0
 autoplay = true
 buffering_msec = 1000
 
