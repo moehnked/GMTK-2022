@@ -48,6 +48,7 @@ var event = {
 }
 
 func startPhase( gameState ):
+	print("Starting Navigation Phase")
 	centerpos = self.rect_position + self.rect_size/2 + self.rect_size/5
 #	for x in range(30):
 	var elist = generateEventList()
@@ -198,9 +199,15 @@ func RaiseEvent(op):
 	UndisplayNavigationOptions()
 	gamemanager.emit_signal("navigation_phase_end",op)
 	print("Activated Event: ",op.eventID)
+	yield($Tween,"tween_all_completed")
+	for old in options:
+		if !old.isSelected:
+			old.queue_free()
+	options = []
 
 func dice_roll_effect(ary):
 	diceMgr.disconnect('report_roll', self, 'dice_roll_effect');
+	var anyUnlock=false
 	print("Applying roll of ",ary)
 	if selectedOption:
 		return #Already picked, don't need to apply dice
@@ -208,9 +215,11 @@ func dice_roll_effect(ary):
 		for option in options:
 			var success = option.deactivateRollRequirement(ary[roll])
 			if success:
+				anyUnlock=true
 				firebolt(option)
 	#Take in an array of dice and apply them automatically to the locks present.
-	yield($Tween,"tween_all_completed")
+	if anyUnlock:
+		yield($Tween,"tween_all_completed")
 	print("Rolling complete, ready to go")
 	canSelect=true
 	for op in options:
