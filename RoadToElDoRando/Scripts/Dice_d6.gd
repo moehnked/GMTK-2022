@@ -4,7 +4,7 @@ var side_raycasts = []
 
 var passed_through_dome
 var dome_checker
-var dome_mask = 4
+var dome_mask = 3
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
