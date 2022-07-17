@@ -12,6 +12,7 @@ func _ready():
 
 
 func enable_roll():
+	print("enabling")
 	$AnimationPlayer.play("null-to-roll")
 	enable_pressable()
 
@@ -19,10 +20,12 @@ func shut_display():
 	$AnimationPlayer.play("to-null")
 
 func roll():
+	print("rolling")
 	$AnimationPlayer.play("roll-to-null")
 	$Button.visible = false
 
 func enable_pressable():
+	print("enabling pressable")
 	$Button.visible = true
 	state = State.ROLL
 
