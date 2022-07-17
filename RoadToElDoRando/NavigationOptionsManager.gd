@@ -76,7 +76,15 @@ func testAddEvent():
 func AddOptionFromEventDict(e):
 	var newop = option.instance()
 	var newreq = generateOptionCost(e['score'],true)
-	newop.setup(self,e["name"],e["id"],newreq,e["transform_to"],e["transform_name"])
+	
+	var tf = null
+	var tfn = null
+	
+	if e["transform_to"] != null and randf() > 0.5: #50/50 chance to allow transforms
+		tf = e["transform_to"]
+		tfn = e["transform_name"]
+	
+	newop.setup(self,e["name"],e["id"],newreq,tf,tfn)
 	options.append(newop)
 	self.add_child(newop)
 
@@ -102,10 +110,10 @@ func generateOptionCost(score,required):
 		num = 1
 	if num > 0:
 		for i in range(num):
-			dString = dString + String(randi()%6+1) + '|'
+			dString = dString + String(rng.randi()%6+1) + '|'
 		dString=dString.trim_suffix('|')
 		reqs.append(dString)
-#	print("Generated Requirements: ",dString)
+	print("Generated Requirements: ",dString)
 	return reqs
 
 func _ready():

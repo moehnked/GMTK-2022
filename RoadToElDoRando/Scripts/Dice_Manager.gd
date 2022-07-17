@@ -106,6 +106,7 @@ func read_dice_values ():
 	if dice_array.size() != 0:
 #		roll_remaining_dice()
 		var num = dice_array.size()
+		print("Dead dice, respawning ",num," dice")
 		for die in dice_array:
 			despawn_die(die)
 		timer.start(roll_time)
