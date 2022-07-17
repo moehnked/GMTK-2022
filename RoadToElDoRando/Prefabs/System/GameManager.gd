@@ -1,5 +1,6 @@
 extends Node
 
+
 signal exploration_phase_start
 signal exploration_phase_end
 signal navigation_phase_start
