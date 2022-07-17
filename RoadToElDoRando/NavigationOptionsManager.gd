@@ -151,7 +151,8 @@ func SetNavigationOptionsStart():
 			$DisplayCurve/DisplayFinder.unit_offset = 0.5
 		var desiredPosition = Vector2(-600,-400) - Vector2(200,0) * 10 + centerpos
 #		var desiredPosition = (($DisplayCurve/DisplayFinder.position) - centerpos) * 10 + centerpos - options[i].rect_size/2
-		options[i].rect_position = desiredPosition
+		if options[i] != null:
+			options[i].rect_position = desiredPosition
 
 func DisplayNavigationOptions():
 	#Unhide at start of tween
