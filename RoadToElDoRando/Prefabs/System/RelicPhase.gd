@@ -23,9 +23,12 @@ func initialize(_gamestate):
 func resolve_relic_rolls(ary):
 	print(ary)
 	var win = true
+	var count = 0
 	for r in ary.values():
-		if r != 6:
-			win = false
+		if r == 6:
+			count = count + 1
+	if count < 3: #RELIC WIN CONDITION
+		win=false
 	if win == true:
 		get_tree().change_scene("res://Scenes/winScreen.tscn")
 	
