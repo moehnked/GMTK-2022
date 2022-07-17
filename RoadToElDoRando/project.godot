@@ -14,10 +14,6 @@ config/name="RoadToElDoRando"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
-[autoload]
-
-GameManager="*res://Prefabs/System/GameManager.gd"
-
 [display]
 
 window/size/width=1920

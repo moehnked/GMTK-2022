@@ -39,8 +39,7 @@ var RNG = RandomNumberGenerator.new()
 func _ready():
 	load_game()
 	initialize()
-	var nds = get_tree().get_nodes_in_group('ExplorationUnit')
-	
+	handle_phases()
 	pass # Replace with function body.
 
 func get_game_state():
@@ -73,10 +72,12 @@ func handle_phases():
 	# Roll dice to determine how much progress is made towards port
 	# If Progress > Dist. to Port, show Port scene
 	# Else to Navigation Phase
-
-	emit_signal("exploration_phase_start");
 	
-	update_state(yield(self, 'exploration_phase_end'));
+	$ExplorationManager.start_phase(gameState);	
+	
+	update_state(yield(self, 'end_phase'));
+	print(gameState);
+	return;
 	
 	if gameState.CurrentDistance <= gameState.PortDistance:
 		emit_signal("entered_port");

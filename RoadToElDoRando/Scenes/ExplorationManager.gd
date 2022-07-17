@@ -13,9 +13,6 @@ var _state;
 func _ready():
 	DiceManager = get_tree().get_nodes_in_group('dice_manager')[0];
 	GameManager = get_tree().get_nodes_in_group('game_manager')[0];
-	
-	yield(get_tree().create_timer(2), 'timeout');
-	start_phase(GameManager.gameState);
 
 func start_phase( gameState ):
 	_state = gameState;

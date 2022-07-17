@@ -4,7 +4,7 @@ extends Control
 var option = preload("res://Prefabs/UI/NavigationOption.tscn")
 var options = []
 
-onready var gamemanager = get_node("/root/GameManager")
+onready var gamemanager = get_node("/root/GameScreen/GameManager")
 
 var fireemitter = preload("res://Prefabs/Environmental/Firebolt.tscn")
 
@@ -140,7 +140,7 @@ func SelectOption(op):
 
 func RaiseEvent(op):
 	UndisplayNavigationOptions()
-	GameManager.emit_signal("navigation_phase_end",1)
+	gamemanager.emit_signal("navigation_phase_end",1)
 	print("Activated Event: ",op.eventID)
 
 func dice_roll_effect(ary):
@@ -175,7 +175,7 @@ func firebolt(op):
 var eventlist = ["Dread On Open Water","Sharks!","The Red Storm","Unlucky Omen","Charred Albatross","Beguiling Merfolk","Paradise Grove","Missing First Mate","A Serpent Writhes","Crates, Adrift"]
 
 func generateEventList():
-	var rng = GameManager.get_rng()
+	var rng = gamemanager.get_rng()
 	rng.randomize()
 	var events = {}
 	var options_num = [1,2,2,2,3,3,3,3,4,4,5,5] #How many events to generate
