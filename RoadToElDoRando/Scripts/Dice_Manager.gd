@@ -11,7 +11,7 @@ var dice_array = []
 var final_rolls = {}
 
 var die_prefab = preload("res://Dice_d6.tscn")
-var spawn_position = Vector3(0,4,0)
+var spawn_position = Vector3(0,20,0)
 
 var timer
 const roll_time = 6
@@ -24,7 +24,7 @@ func _ready():
 	timer.set_one_shot(true)
 	timer.start(roll_time)
 	timer.set_paused(true)
-	dice_button = get_tree().get_nodes_in_group("DiceButton")[0]
+#	dice_button = get_tree().get_nodes_in_group("DiceButton")[0]
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

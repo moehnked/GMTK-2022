@@ -4,6 +4,7 @@ var side_raycasts = []
 
 var passed_through_dome
 var dome_checker
+var dome_mask = 4
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,7 +12,7 @@ func _ready():
 	
 	## the die will not interact with the dome the first time it hits it
 	passed_through_dome = false
-	self.set_collision_layer_bit (4, false)
+	self.set_collision_mask_bit (dome_mask, false)
 	dome_checker = $DomeChecker
 	
 	
@@ -76,10 +77,12 @@ func reroll_die ():
 
 
 func _on_DomeChecker_body_entered(body):
-#	if body.name == "Dome":
-#		print ("Dome!")
-	pass # Replace with function body.
+	if body.name == "Dome":
+		if not passed_through_dome:
+			passed_through_dome = true
 
 
 func _on_DomeChecker_body_exited(body):
-	pass # Replace with function body.
+	if body.name == "Dome":
+		if passed_through_dome:
+			self.set_collision_mask_bit(dome_mask,true)
