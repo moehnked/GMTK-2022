@@ -6,7 +6,7 @@
 [ext_resource path="res://Assets/Sprites/UI/GameScreen/exp_bg2_white.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Sprites/UI/GameScreen/compass_1.png" type="Texture" id=5]
 [ext_resource path="res://Assets/UI/Dice Icons/dice-six-faces-six.png" type="Texture" id=6]
-[ext_resource path="res://Prefabs/UI/ExplorationDice.gd" type="Script" id=7]
+[ext_resource path="res://Prefabs/UI/ExplorationUnit.gd" type="Script" id=7]
 [ext_resource path="res://Assets/UI/large_q_mark.png" type="Texture" id=8]
 
 [sub_resource type="Animation" id=1]
@@ -372,7 +372,7 @@ tracks/4/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 0.180392, 0.164706, 0.356863, 1 ) ]
 }
 
-[node name="ExplorationDice" type="Node2D"]
+[node name="ExplorationUnit" type="Node2D"]
 script = ExtResource( 7 )
 
 [node name="ExpBg3" type="Sprite" parent="."]
@@ -413,6 +413,7 @@ anims/to-null = SubResource( 5 )
 
 [node name="Button" type="TextureButton" parent="."]
 visible = false
+modulate = Color( 1, 1, 1, 0 )
 margin_left = -127.0
 margin_top = -132.0
 margin_right = 137.0

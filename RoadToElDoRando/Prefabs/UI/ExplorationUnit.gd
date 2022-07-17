@@ -23,6 +23,7 @@ func roll():
 
 func enable_pressable():
 	$Button.visible = true
+	state = State.ROLL
 
 func _on_Button_pressed():
 	match state:
