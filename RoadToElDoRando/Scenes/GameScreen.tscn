@@ -14,6 +14,7 @@
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="NavigationOptionsManager" parent="UI" instance=ExtResource( 3 )]
+mouse_filter = 2
 
 [node name="Node2D" parent="." instance=ExtResource( 4 )]
 z_index = -1000
@@ -32,12 +33,18 @@ transparent_bg = true
 handle_input_locally = false
 render_target_update_mode = 3
 
+<<<<<<< Updated upstream
 [node name="Main" parent="ViewportContainer/Viewport" instance=ExtResource( 5 )]
 
 [node name="DiceButton" parent="ViewportContainer/Viewport" instance=ExtResource( 6 )]
+=======
+[node name="ExplorationUnit" parent="ViewportContainer/Viewport" instance=ExtResource( 6 )]
+>>>>>>> Stashed changes
 position = Vector2( 960, 999 )
 scale = Vector2( 0.6, 0.6 )
 z_index = 4096
 z_as_relative = false
+
+[node name="Main" parent="ViewportContainer/Viewport" instance=ExtResource( 5 )]
 
 [node name="ExplorationManager" parent="." instance=ExtResource( 2 )]

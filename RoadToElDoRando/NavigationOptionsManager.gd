@@ -18,7 +18,43 @@ var vertscale = 0.8 #Distorts the y-axis of the display area up so that labels h
 
 var centerpos
 
+var event = {
+	"id": "siren",
+	"name": "Is that... Singing?",
+	"score": 5,
+	"description": "The whistling of the ocean breeze carries a haunting melody. After a moment, the lookout spots a small islet port-ward.",
+	"options": [
+		{
+			"text": "Stay the course and put the wail out of your mind",
+			"result": {
+				"text": "The crew mutters at their work and tempers are high until the wailing falls out of earshot",
+				"reward": [{"resource": "morale", "value": -1}]
+			}
+		},
+		{
+			"text": "Send a crew to investigate",
+			"cost": [{"resource": "crew", "value": 1}],
+			"result": {
+				"text": "The sun falls below the horizon before the dinghy makes it back to the ship. The crew is gone, in their place a bright white bird's skull scoured clean by the salt water.",
+				"reward": [{"resource": "relic_4", "value": 1}]
+			}
+		}, 
+	]
+}
+
+func game_state_initialized():
+	print("Navigation Manager Ready")
+
 func _ready():
+	pass
+	
+#	beginPhase()
+#	yield($Tween,"tween_all_completed")
+#	yield(get_tree().create_timer(0.5), "timeout")
+#	dice_roll_effect([randi()%6+1,randi()%6+1,randi()%6+1,randi()%6+1,randi()%6+1,randi()%6+1])
+	#UndisplayNavigationOptions()
+
+func beginPhase():
 	centerpos = self.rect_position + self.rect_size/2 + self.rect_size/5
 #	for x in range(30):
 	var elist = generateEventList()
@@ -34,11 +70,7 @@ func _ready():
 #	AddOption("He Who Came Before","ev0",["d:6"])
 	SetNavigationOptionsStart()
 	update()
-	yield(get_tree().create_timer(0.5), "timeout")
 	DisplayNavigationOptions()
-	yield(get_tree().create_timer(2.5), "timeout")
-	dice_roll_effect([randi()%6+1,randi()%6+1,randi()%6+1,randi()%6+1,randi()%6+1,randi()%6+1])
-	#UndisplayNavigationOptions()
 
 func SetupDisplayCurve():
 
@@ -95,7 +127,7 @@ func AddOption(n,ev,unlock=null,ct=null,ctn=null):
 	var newop = option.instance()
 	newop.setup(self,n,ev,unlock,ct,ctn)
 	options.append(newop)
-	self.add_child(newop)
+	$Options.add_child(newop)
 
 func generateEventEntry(eventdict):
 	pass
@@ -117,6 +149,11 @@ func RaiseEvent(op):
 	UndisplayNavigationOptions()
 	GameManager.emit_signal("event_phase_end",1)
 	print("Activated Event: ",op.eventID)
+	yield($Tween,"tween_all_completed")
+	for child in $Options.get_children():
+		child.queue_free()
+		options = []
+		selectedOption = null
 
 func dice_roll_effect(ary):
 	print("Applying roll of ",ary)
