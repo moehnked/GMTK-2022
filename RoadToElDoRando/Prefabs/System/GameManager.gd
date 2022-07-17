@@ -75,7 +75,6 @@ func handle_phases():
 
 	if gameState.CurrentDistance >= gameState.PortDistance:
 		gameState.CurrentDistance = 0
-		print('Entered Port!', gameState.CurrentDistance, ' ', gameState.PortDistance)
 		var phaseRef = get_tree().get_nodes_in_group("Port")[0]
 		phaseRef.initialize(gameState)
 		update_state(yield(phaseRef, 'exited_port'));

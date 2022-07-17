@@ -156,7 +156,7 @@ func SetNavigationOptionsStart():
 func DisplayNavigationOptions():
 	#Unhide at start of tween
 	for i in range(0,options.size()):
-		if options.size() >1:
+		if options.size() > 1:
 			$DisplayCurve/DisplayFinder.unit_offset = (1.0/float(options.size()-1)) * i
 		else:
 			$DisplayCurve/DisplayFinder.unit_offset = 0.5
@@ -188,6 +188,7 @@ func SelectOption(op):
 		op.isSelected=true
 		op.strip()
 		RaiseEvent(op)
+		options.erase(op)
 #		$Tween.interpolate_property(op,"rect_position",op.rect_position,$EventLocation.rect_position - op.rect_size/2,0.6,Tween.TRANS_CUBIC,Tween.EASE_OUT,1)
 #		$Tween.start()
 	else:
