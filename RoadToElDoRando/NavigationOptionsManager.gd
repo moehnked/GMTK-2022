@@ -18,7 +18,29 @@ var vertscale = 0.8 #Distorts the y-axis of the display area up so that labels h
 
 var centerpos
 
-func _ready():
+var event = {
+	"name": "Is that... Singing?",
+	"description": "The whistling of the ocean breeze carries a haunting melody. After a moment, the lookout spots a small islet port-ward.",
+	"options": [
+		{
+			"text": "Stay the course and put the wail out of your mind",
+			"result": {
+				"text": "The crew mutters at their work and tempers are high until the wailing falls out of earshot",
+				"reward": [{"resource": "morale", "value": -1}]
+			}
+		},
+		{
+			"text": "Send a crew to investigate",
+			"cost": [{"resource": "crew", "value": 1}],
+			"result": {
+				"text": "The sun falls below the horizon before the dinghy makes it back to the ship. The crew is gone, in their place a bright white bird's skull scoured clean by the salt water.",
+				"reward": [{"resource": "relic_4", "value": 1}]
+			}
+		}, 
+	]
+}
+
+func startPhase():
 	centerpos = self.rect_position + self.rect_size/2 + self.rect_size/5
 #	for x in range(30):
 	var elist = generateEventList()
@@ -33,12 +55,15 @@ func _ready():
 #	AddOption("Land, Ho!","ev5",["d:3|1|4"])
 #	AddOption("He Who Came Before","ev0",["d:6"])
 	SetNavigationOptionsStart()
-	update()
-	yield(get_tree().create_timer(0.5), "timeout")
 	DisplayNavigationOptions()
-	yield(get_tree().create_timer(2.5), "timeout")
-	dice_roll_effect([randi()%6+1,randi()%6+1,randi()%6+1,randi()%6+1,randi()%6+1,randi()%6+1])
-	#UndisplayNavigationOptions()
+#	update()
+
+func _ready():
+	pass
+#	yield(get_tree().create_timer(0.5), "timeout")
+#
+#	yield(get_tree().create_timer(2.5), "timeout")
+#	dice_roll_effect([randi()%6+1,randi()%6+1,randi()%6+1,randi()%6+1,randi()%6+1,randi()%6+1])
 
 func SetupDisplayCurve():
 
@@ -115,7 +140,7 @@ func SelectOption(op):
 
 func RaiseEvent(op):
 	UndisplayNavigationOptions()
-	GameManager.emit_signal("event_phase_end",1)
+	GameManager.emit_signal("navigation_phase_end",1)
 	print("Activated Event: ",op.eventID)
 
 func dice_roll_effect(ary):
