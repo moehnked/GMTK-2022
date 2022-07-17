@@ -54,6 +54,7 @@ mesh = SubResource( 2 )
 material/0 = SubResource( 3 )
 
 [node name="Dome" type="StaticBody" parent="."]
+collision_layer = 8
 
 [node name="Icosphere" type="MeshInstance" parent="Dome"]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )

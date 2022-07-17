@@ -31,4 +31,3 @@ one_shot = true
 
 [node name="Playmat" parent="." instance=ExtResource( 2 )]
 transform = Transform( 30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0 )
-visible = false
