@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/same_as_any_other_evening.wav-4e57f6db5a78feb43abbccd1cb4d5b44.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/music/same_as_any_other_evening.wav"
+dest_files=[ "res://.import/same_as_any_other_evening.wav-4e57f6db5a78feb43abbccd1cb4d5b44.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

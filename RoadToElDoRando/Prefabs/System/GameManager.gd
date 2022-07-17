@@ -22,6 +22,8 @@ var fileString = "user://file_data.json"
 var game_ended = false
 var RNG = RandomNumberGenerator.new()
 
+export(Array, Resource) var songs = []
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	load_game()
@@ -43,6 +45,7 @@ func initialize():
 	RNG.seed = gameState["seed"]
 	get_tree().call_group("GamestateObserver", "game_state_initialized")
 	update_state( gameState )
+	ready_music()
 
 # Necessary "Scenes"
 # Exploration Phase
@@ -63,7 +66,9 @@ func update_state( data ):
 	
 func handle_phases():
 	print("new round")
-
+	if not $music.playing:
+		ready_music()
+		
 	$ExplorationManager.start_phase(gameState);	
 
 	update_state(yield($ExplorationManager, 'end_phase'));
@@ -102,6 +107,14 @@ func handle_phases():
 	if gameState.Ship.Crew <= 0:
 		print("game over")
 		return true;
+	elif gameState.Ship.Supplies > 0:
+		gameState.Ship.Supplies -= gameState.Ship.Crew
+		get_tree().call_group("SuppliesDisplay", "update_text", gameState.Ship.Supplies)
+		$sfx_daily_consume.play()
+	else:
+		gameState.Ship.Crew -= 1
+		get_tree().call_group("CrewDisplay", "update_text", gameState.Ship.Crew)
+		$sfx_crewDies.play()
 	print("round end")
 	return handle_phases();
 
@@ -109,13 +122,17 @@ func handle_phases():
 func load_game():
 	var file = File.new()
 	if not file.file_exists(fileString):
+		RNG = RandomNumberGenerator.new()
 		RNG.randomize()
 		gameState["seed"] = RNG.seed
 		save()
 		return
 	file.open(fileString, File.READ)
-#	gameState = parse_json(file.get_as_text())
+	gameState = parse_json(file.get_as_text())
 
+func ready_music():
+	$music.stream = songs[RNG.randi() % songs.size()]
+	$music.play()
 
 func save():
 	var file = File.new()

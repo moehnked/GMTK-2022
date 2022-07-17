@@ -28,7 +28,7 @@ func _ready():
 #	pass
 "
 
-[node name="CrewDisplay" type="Node2D"]
+[node name="CrewDisplay" type="Node2D" groups=["CrewDisplay"]]
 position = Vector2( -457, -29 )
 scale = Vector2( 0.748, 0.748 )
 script = SubResource( 1 )

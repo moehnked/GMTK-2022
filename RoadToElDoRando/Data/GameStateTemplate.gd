@@ -6,9 +6,9 @@ const template = {
 	"Phase": 0,
 	"Relics":0,
 	"Ship":{
-		"MaxSupplies":1,
-		"Supplies":1,
-		"Crew":1,
+		"MaxSupplies":5,
+		"Supplies":5,
+		"Crew":2,
 	},
 	"Round":0,
 	"PortDistance": 6,

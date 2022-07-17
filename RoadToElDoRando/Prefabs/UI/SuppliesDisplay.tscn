@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assets/UI/icons/PNG/White/1x/menuGrid.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Sprites/UI/ProgressBar/ring_inner.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Sprites/UI/ProgressBar/ring.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Sprites/UI/ProgressBar/ring_bg.png" type="Texture" id=4]
 [ext_resource path="res://Assets/UI/defaultTheme.tres" type="Theme" id=5]
+[ext_resource path="res://Assets/Audio/UI/click_2.wav" type="AudioStream" id=6]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Node2D
@@ -15,6 +16,7 @@ script/source = "extends Node2D
 # var b = \"text\"
 
 func update_text(value):
+	$AudioStreamPlayer.play()
 	$SuppliesLabel.set_text(str(value));
 
 # Called when the node enters the scene tree for the first time.
@@ -72,3 +74,6 @@ texture = ExtResource( 3 )
 position = Vector2( 0, 2.94378 )
 scale = Vector2( 2.90368, 2.90368 )
 texture = ExtResource( 1 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )

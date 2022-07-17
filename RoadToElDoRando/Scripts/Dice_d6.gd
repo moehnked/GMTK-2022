@@ -73,10 +73,12 @@ func get_selected_collider():
 		return result.collider
 	return null
 	
-func roll_die (var dir: Vector3):
+func roll_die (var dir: Vector3, _rng = RandomNumberGenerator.new()):
 	self.mode = RigidBody.MODE_RIGID
 	self.set_sleeping(false)
 	self.apply_central_impulse(dir * roll_strength)
+	var initvellim = 2
+	self.angular_velocity = Vector3(_rng.randf_range(-initvellim,initvellim),_rng.randf_range(-initvellim,initvellim),_rng.randf_range(-initvellim,initvellim))
 	audio_streamer.play()
 
 func reroll_die ():

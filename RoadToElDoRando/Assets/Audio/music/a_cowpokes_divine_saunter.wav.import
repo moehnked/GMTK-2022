@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/a_cowpokes_divine_saunter.wav-dd41548d87bb70405bf4e9043f1450d0.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/music/a_cowpokes_divine_saunter.wav"
+dest_files=[ "res://.import/a_cowpokes_divine_saunter.wav-dd41548d87bb70405bf4e9043f1450d0.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

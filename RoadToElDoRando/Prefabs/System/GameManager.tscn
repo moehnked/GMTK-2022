@@ -1,11 +1,17 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Prefabs/System/GameManager.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Audio/phases/port.wav" type="AudioStream" id=2]
 [ext_resource path="res://Assets/Audio/water1.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Assets/Audio/music/a_cowpokes_divine_saunter.wav" type="AudioStream" id=4]
+[ext_resource path="res://Assets/Audio/music/carpets_extended.wav" type="AudioStream" id=5]
+[ext_resource path="res://Assets/Audio/music/same_as_any_other_evening.wav" type="AudioStream" id=6]
+[ext_resource path="res://Assets/Audio/man_die.ogg" type="AudioStream" id=7]
+[ext_resource path="res://Assets/Audio/crunch.ogg" type="AudioStream" id=8]
 
 [node name="GameManager" type="Node" groups=["GameManager"]]
 script = ExtResource( 1 )
+songs = [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
@@ -14,3 +20,13 @@ autoplay = true
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 autoplay = true
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+
+[node name="sfx_crewDies" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+volume_db = 2.0
+
+[node name="sfx_daily_consume" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = 3.0
