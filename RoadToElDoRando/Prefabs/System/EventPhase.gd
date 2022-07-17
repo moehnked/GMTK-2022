@@ -1,5 +1,9 @@
 extends Node2D
 
+signal emit_end_phase(gs)
+
+var eventlist
+
 var event = {
 	"name": "Is that... Singing?",
 	"id":"siren",
@@ -26,13 +30,35 @@ var event = {
 	]
 }
 
+var gameState = {}
+var isReadingResult = false
+var targetEventBanner = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	ready_event_list()
 	pass # Replace with function body.
 
-func initialize(e):
-	event = e
+func _process(delta):
+	if Input.is_action_just_released("select") and isReadingResult:
+		isReadingResult = false
+		$DescriptionAnimated/AnimationPlayer.play("HideResults")
+	if targetEventBanner != null:
+		targetEventBanner.rect_position = targetEventBanner.rect_position.linear_interpolate($BannerPoint.position, 0.1)
+
+func end_phase():
+	print("ending phase")
+	emit_signal("emit_end_phase", gameState)
+	#modify game state
+	#move on to next phase
+
+func ready_event_list():
+	var file = File.new()
+	file.open("res://Data/eventslist.json", File.READ)
+	eventlist = parse_json(file.get_as_text())
+
+func setup_event():
+	event = eventlist[targetEventBanner.eventID]
 	$titleBanner.set_text(event["name"])
 	$titleBanner.show()
 	$DescriptionAnimated/Column1/Description/Label.text = event["description"]
@@ -45,6 +71,12 @@ func initialize(e):
 			ob.optionNumber = i
 		else:
 			ob.visible = false
+	$DescriptionAnimated/AnimationPlayer.play("reveal")
+
+func initialize(e, _gamestate):
+	targetEventBanner = e
+	gameState = _gamestate
+	setup_event()
 
 func init_option(option_node, index):
 	option_node.visible = event["options"].size() >= 1
@@ -56,6 +88,5 @@ func parse_option_selected(n):
 	$DescriptionAnimated/AnimationPlayer.play("HideOptions")
 	pass
 
-func _on_Timer_timeout():
-	initialize(event)
-	pass # Replace with function body.
+func set_viewing_options():
+	isReadingResult = true

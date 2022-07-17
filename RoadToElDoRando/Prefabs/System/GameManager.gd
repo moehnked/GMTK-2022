@@ -19,14 +19,11 @@ var gameState = {
 	"Phase": 0,
 	"Relics":{},
 	"Ship":{
-		"ShipType":{},
 		"Supplies":10,
-		"Crew":[],
-		"Hull":5,
-		"Statuses":{}
+		"Crew":5,
 	},
 	"Round":0,
-	"PortDistance":4,
+	"PortDistance": 30,
 	"PortsReached": 0,
 	"CurrentDistance":0,
 	"TotalDistance": 0,
@@ -51,6 +48,7 @@ func get_rng():
 func initialize():
 	RNG.seed = gameState["seed"]
 	get_tree().call_group("GamestateObserver", "game_state_initialized")
+	update_state( gameState )
 
 # Necessary "Scenes"
 # Exploration Phase
@@ -65,6 +63,8 @@ func initialize():
 
 func update_state( data ):
 	gameState = data;
+	$SuppliesDisplay.update_text( gameState.Ship.Supplies )
+	$CrewDisplay.update_text( gameState.Ship.Crew )
 	pass
 	
 func handle_phases():
@@ -77,7 +77,8 @@ func handle_phases():
 	
 	update_state(yield($ExplorationManager, 'end_phase'));
 	
-	if gameState.CurrentDistance <= gameState.PortDistance:
+	if gameState.CurrentDistance >= gameState.PortDistance:
+		print('Entered Port!', gameState.CurrentDistance, ' ', gameState.PortDistance)
 		emit_signal("entered_port");
 		update_state(yield(self, 'exited_port'));
 		return true;
@@ -85,7 +86,7 @@ func handle_phases():
 	var navMgr = $"../UI/NavigationOptionsManager"
 	navMgr.startPhase()
 	
-	yield(self, 'navigation_phase_end');
+	var handoffObject = yield(self, 'navigation_phase_end');
 		
 	
 	# Phase 2: Navigation Phase
@@ -95,9 +96,9 @@ func handle_phases():
 	# Modify dice
 	# Choose the event
 	gameState.Phase = 2;
-	emit_signal("navigation_phase_start");
+#	emit_signal("navigation_phase_start");
 	
-	update_state(yield(self, 'navigation_phase_end'));
+#	update_state(yield(self, 'navigation_phase_end'));
 	
 	# Phase 3: Event Phase
 	# Show the name and description, move props on screen
@@ -106,6 +107,9 @@ func handle_phases():
 	# Display the rewards and costs
 	gameState.Phase = 3;
 	emit_signal("event_phase_start");
+	
+	#starts Event Phase
+	get_tree().call_group("EventPhase","initialize",handoffObject, gameState)
 
 	update_state(yield(self, "event_phase_end"));
 	
@@ -135,7 +139,7 @@ func load_game():
 		save()
 		return
 	file.open(fileString, File.READ)
-	gameState = parse_json(file.get_as_text())
+#	gameState = parse_json(file.get_as_text())
 
 
 func save():

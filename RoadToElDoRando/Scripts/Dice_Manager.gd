@@ -31,7 +31,7 @@ func _process(delta):
 	# Roll all dice in the dome
 	if Input.is_action_just_pressed("roll_dice"): # space
 		roll_remaining_dice()
-		
+
 	# Roll all dice from the cup
 	if Input.is_action_just_pressed("initial_roll"): # r
 		full_roll(6)
@@ -76,6 +76,7 @@ func full_roll (n_dice):
 
 func emit_report_roll():
 	emit_signal("report_roll", final_rolls)
+	final_rolls.clear()
 
 #### TODO Change later to get actual first roll ####
 func initial_roll():
@@ -83,8 +84,8 @@ func initial_roll():
 		die.roll_die(get_spawn_roll(die.transform.origin))
 	timer.set_paused(false)
 	timer.start(roll_time)
-	
-		
+
+
 
 
 func roll_remaining_dice ():
@@ -112,9 +113,11 @@ func read_dice_values ():
 		roll_remaining_dice()
 		return false
 	else:
-		emit_report_roll()
+		if final_rolls.size() > 0:
+			emit_report_roll()
 		for die in dice_array:
 			despawn_die(die)
+		dice_array.clear()
 		timer.stop()
 		return true
 
