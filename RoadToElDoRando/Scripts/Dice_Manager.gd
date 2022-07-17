@@ -33,7 +33,7 @@ func _process(delta):
 	
 	if timer.is_stopped():
 		read_dice_values()
-	
+
 	# accept and read all values in the dome
 	if Input.is_action_just_pressed("finalize_roll"):
 		finalize_roll()
@@ -76,10 +76,15 @@ func full_roll (n_dice):
 	
 func emit_report_roll():
 	emit_signal("report_roll", final_rolls)
+	final_rolls.clear()
 
 #### Change later to get actual first roll ####
 func initial_roll():
-	roll_remaining_dice()
+#	roll_remaining_dice()
+	for die in dice_array:
+		die.roll_die(Vector3(0, 0, 0));
+	timer.set_paused(false)
+	timer.start(roll_time)
 	
 
 func roll_remaining_dice ():
@@ -113,9 +118,11 @@ func read_dice_values ():
 		spawn_dice(num)
 		return false
 	else:
-		emit_report_roll()
+		if final_rolls.size() > 0:
+			emit_report_roll()
 		for die in dice_array:
 			despawn_die(die)
+		dice_array.clear()
 		timer.stop()
 		return true
 
