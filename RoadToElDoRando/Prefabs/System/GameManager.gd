@@ -36,7 +36,9 @@ var RNG = RandomNumberGenerator.new()
 func _ready():
 	load_game()
 	initialize()
-	handle_phases()
+	var game_ended = false
+	while not game_ended: 
+		game_ended = handle_phases();
 	pass # Replace with function body.
 
 func get_game_state():
@@ -132,6 +134,9 @@ func handle_phases():
 	
 	if gameState.Ship.Crew <= 0:
 		emit_signal("game_lost");
+		return false;
+	
+	return true;
 
 
 func load_game():
