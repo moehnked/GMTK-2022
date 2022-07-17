@@ -33,7 +33,7 @@ render_target_update_mode = 3
 
 [node name="Main" parent="ViewportContainer/Viewport" instance=ExtResource( 5 )]
 
-[node name="ExplorationUnit" parent="." groups=["ExplorationUnit"] instance=ExtResource( 6 )]
+[node name="ExplorationUnit" parent="." instance=ExtResource( 6 )]
 position = Vector2( 960, 999 )
 scale = Vector2( 0.6, 0.6 )
 

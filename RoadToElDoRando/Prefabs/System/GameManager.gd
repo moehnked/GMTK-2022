@@ -39,6 +39,8 @@ var RNG = RandomNumberGenerator.new()
 func _ready():
 	load_game()
 	initialize()
+	var nds = get_tree().get_nodes_in_group('ExplorationUnit')
+	
 	pass # Replace with function body.
 
 func get_game_state():
