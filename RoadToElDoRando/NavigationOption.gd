@@ -91,11 +91,24 @@ func DissolveName():
 	label.text = displayName
 	manager.get_node("Tween").interpolate_property(label,"modulate",label.modulate,Color(1,1,1,1),0.7,Tween.TRANS_CUBIC,Tween.EASE_OUT,0)
 	manager.get_node("Tween").start()
-	
+
+func strip():
+	#remove all excess stuff that isn't the banner and label
+	manager.get_node("Tween").interpolate_property($Locked,"modulate",$Locked.modulate,Color(1,1,1,0),0.7,Tween.TRANS_CUBIC,Tween.EASE_OUT,0)
+	for n in $Label/UnlockRequirement.get_children():
+		manager.get_node("Tween").interpolate_property(n,"modulate",n.modulate,Color(1,1,1,0),0.7,Tween.TRANS_CUBIC,Tween.EASE_OUT,0)
+	manager.get_node("Tween").start()
+#
+#	yield(manager.get_node("Tween"),"tween_all_completed")
+#	for n in $Label/UnlockRequirement.get_children():
+#		n.queue_free()
 
 func UpdateSprite():
 	$Label/EventName/CenterContainer/Name.text = displayName
 
+func showActive():
+	manager.get_node("Tween").interpolate_property($Label/EventName,"modulate",$Label/EventName.modulate,Color(1,1,1),0.5,Tween.TRANS_LINEAR,Tween.EASE_IN,0)
+	manager.get_node("Tween").start()
 
 func RegisterUnlocks():
 	if !isLocked and !transformTo:

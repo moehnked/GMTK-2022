@@ -186,6 +186,7 @@ func SelectOption(op):
 	if op in options and canSelect == true:
 		canSelect=false
 		op.isSelected=true
+		op.strip()
 		RaiseEvent(op)
 #		$Tween.interpolate_property(op,"rect_position",op.rect_position,$EventLocation.rect_position - op.rect_size/2,0.6,Tween.TRANS_CUBIC,Tween.EASE_OUT,1)
 #		$Tween.start()
@@ -211,6 +212,9 @@ func dice_roll_effect(ary):
 	yield($Tween,"tween_all_completed")
 	print("Rolling complete, ready to go")
 	canSelect=true
+	for op in options:
+		if !op.isLocked:
+			op.showActive()
 
 func firebolt(op):
 	var lockpos = op.get_node("Locked").rect_position + op.rect_position + op.get_node("Locked").rect_size/2
