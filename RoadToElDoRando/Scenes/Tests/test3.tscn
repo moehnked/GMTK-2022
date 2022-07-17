@@ -6,7 +6,6 @@
 [ext_resource path="res://Prefabs/UI/_ProgressTracker.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assets/Sprites/UI/screen.png" type="Texture" id=5]
 
-
 [node name="Node2D" type="Node2D"]
 
 [node name="Node2D" parent="." instance=ExtResource( 1 )]
@@ -18,6 +17,7 @@ texture = ExtResource( 5 )
 centered = false
 
 [node name="ExplorationDice" parent="." instance=ExtResource( 2 )]
+visible = false
 position = Vector2( 960, 1009 )
 scale = Vector2( 0.5, 0.5 )
 
@@ -26,4 +26,5 @@ position = Vector2( 1789, 197 )
 scale = Vector2( 0.400967, 0.400967 )
 
 [node name="ProgressTracker" parent="." instance=ExtResource( 4 )]
+visible = false
 position = Vector2( 960, 117 )

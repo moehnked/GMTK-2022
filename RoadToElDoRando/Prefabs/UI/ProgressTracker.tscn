@@ -65,16 +65,16 @@ fit_content_height = true
 scroll_active = false
 
 [node name="LeaguesLabel" type="RichTextLabel" parent="."]
-margin_left = -61.0
-margin_top = 109.0
-margin_right = 954.0
-margin_bottom = 269.0
-rect_scale = Vector2( 0.13102, 0.13102 )
+margin_left = -91.0
+margin_top = 108.0
+margin_right = 819.0
+margin_bottom = 273.0
+rect_scale = Vector2( 0.2, 0.2 )
 rect_clip_content = false
 theme = ExtResource( 13 )
 bbcode_enabled = true
-bbcode_text = "[center][wave]Leagues to Port...[/wave][/center]"
-text = "Leagues to Port..."
+bbcode_text = "[center][wave]Leagues to Port[/wave][/center]"
+text = "Leagues to Port"
 fit_content_height = true
 scroll_active = false
 
