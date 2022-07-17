@@ -18,7 +18,6 @@ func start_phase( gameState ):
 	_state = gameState;
 	$AnimationPlayer.play("BeginPhase");
 	connect('roll_finished', DiceManager, 'handle_dice_roll', [], CONNECT_ONESHOT);
-	$ExplorationDice.roll(); # Set up to call dice manager roll
 	
 func handle_dice_roll( dice ):
 	var sum = 0;
