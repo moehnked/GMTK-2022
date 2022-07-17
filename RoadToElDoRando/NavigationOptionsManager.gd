@@ -67,7 +67,7 @@ func startPhase():
 	# Dice
 	diceMgr = get_tree().get_nodes_in_group('dice_manager')[0];
 	diceMgr.connect('report_roll', self, 'dice_roll_effect');
-	diceMgr.request_roll(4);
+	diceMgr.request_roll(6);
 #	update()
 
 func testAddEvent():
@@ -197,7 +197,7 @@ func RaiseEvent(op):
 	print("Activated Event: ",op.eventID)
 
 func dice_roll_effect(ary):
-	diceMgr.disconnect('report_dice', self, 'dice_roll_effect');
+	diceMgr.disconnect('report_roll', self, 'dice_roll_effect');
 	print("Applying roll of ",ary)
 	if selectedOption:
 		return #Already picked, don't need to apply dice
