@@ -53,15 +53,12 @@ func startPhase( gameState ):
 #	for x in range(30):
 	var elist = generateEventList()
 	for e in elist:
-		pass
-		AddOption(e,e,elist[e])
+		AddOptionFromEventDict(elist[e])
 	SetupDisplayCurve()
-	testAddEvent()
 	update()
 #	AddOption("Dread On Open Water","ev1")
 #	AddOption("The Too-Quiet Cove","ev3",["d:3|3"])
-	AddOption("Is That...Singing?","siren", [])
-	AddOption("Crates, Adrift", "Crates, Adrift", [])
+#	AddOption("Is That...Singing?","siren", [])
 #	AddOption("A Storm In Red","ev4",["d:1|2"],"storm_safe_1","The Eye Of The Storm")
 #	AddOption("Land, Ho!","ev5",["d:3|1|4"])
 #	AddOption("He Who Came Before","ev0",["d:6"])
@@ -74,22 +71,22 @@ func startPhase( gameState ):
 	diceMgr.request_roll( gameState.Ship.Crew );
 #	update()
 
-func testAddEvent():
-	AddOptionFromEventDict(event)
-
-func AddOptionFromEventDict(e):
+func AddOptionFromEventDict(ev):
 	var newop = option.instance()
-	var newreq = generateOptionCost(e['score'],true)
+	var newreq = generateOptionCost(ev[0]['score'],true)
 	
 	var tf = null
 	var tfn = null
 	
-	if e["transform_to"] != null and randf() > 0.5: #50/50 chance to allow transforms
+	var e = ev[0]
+	
+	if e.has("transform_to") and randf() > 0.5: #50/50 chance to allow transforms
 		tf = e["transform_to"]
 		tfn = e["transform_name"]
 	
 	newop.setup(self,e["name"],e["id"],newreq,tf,tfn)
 	options.append(newop)
+	print("Generated Nav Option: ",newop,"  name: ",newop.displayName, "  " , newop.eventID)
 	self.add_child(newop)
 
 func AddOption(n,ev,unlock=null,ct=null,ctn=null):
@@ -245,10 +242,8 @@ func firebolt(op):
 	yield(get_tree().create_timer(1),"timeout")
 	bolt.queue_free()
 
-
-var eventlist = ["Dread On Open Water","Sharks!","The Red Storm","Unlucky Omen","Charred Albatross","Beguiling Merfolk","Paradise Grove","Missing First Mate","A Serpent Writhes","Crates, Adrift"]
-
 func generateEventList():
+	var eventlist = get_tree().get_nodes_in_group("EventPhase")[0].getEventlist()
 	var rng = gamemanager.get_rng()
 	rng.randomize()
 	var events = {}
@@ -262,10 +257,10 @@ func generateEventList():
 	print("Number of events: ",n)
 	for i in range(n):
 		var rndindex = (rng.randi() % eventlist.size()-1)
-		var chosenEvent = eventlist[rndindex]
+		var chosenEvent = eventlist[eventlist.keys()[rndindex]]
 		while(events.has(chosenEvent)):
 			rndindex = (rng.randi() % eventlist.size()-1)
-			chosenEvent = eventlist[rndindex]
+			chosenEvent = eventlist[eventlist.keys()[rndindex]]
 		var requirementsNum = req_num[rng.randi() % req_num.size()-1]
 		var requirements = []
 		for j in range(requirementsNum):
@@ -278,7 +273,7 @@ func generateEventList():
 		diceString = diceString.trim_suffix('|')
 		if requirementsNum>0:
 			requirementsFormatted.append(diceString)
-		events[chosenEvent] = requirementsFormatted
+		events[chosenEvent["id"]] = [chosenEvent,requirementsFormatted]
 #		print("Event ",chosenEvent, " : ",requirementsFormatted)
 	
 	var isNoCostOption = false
@@ -290,11 +285,11 @@ func generateEventList():
 	if isNoCostOption == false:
 #		print("Guaranteeing outcome")
 		var rndindex = (rng.randi() % eventlist.size()-1)
-		var newEvent = eventlist[rndindex]
+		var newEvent = eventlist[eventlist.keys()[rndindex]]
 		while events.has(newEvent):
 			rndindex = (rng.randi() % eventlist.size()-1)
-			newEvent = eventlist[rndindex]
-		events[newEvent] = []
+			newEvent = eventlist[eventlist.keys()[rndindex]]
+		events[newEvent["id"]] = [newEvent,[]]
 	
 	print(events)
 	return events
