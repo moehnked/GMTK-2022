@@ -20,6 +20,7 @@ func shut_display():
 
 func roll():
 	$AnimationPlayer.play("roll-to-null")
+	$Button.visible = false
 
 func enable_pressable():
 	$Button.visible = true
@@ -30,5 +31,4 @@ func _on_Button_pressed():
 		State.ROLL:
 			emit_signal("emit_roll_clicked")
 			roll()
-			$Button.visible = false
 	pass # Replace with function body.
