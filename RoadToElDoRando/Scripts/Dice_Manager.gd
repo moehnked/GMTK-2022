@@ -108,6 +108,7 @@ func read_dice_values ():
 		var num = dice_array.size()
 		for die in dice_array:
 			despawn_die(die)
+		timer.start(roll_time)
 		spawn_dice(num)
 		return false
 	else:
@@ -123,7 +124,7 @@ func finalize_roll ():
 
 func despawn_die (die):
 	print("DIE DIE DIE")
-	die.queue_free()
+	die.free()
 	dice_array.erase(die)
 
 
