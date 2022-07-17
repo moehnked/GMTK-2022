@@ -13,10 +13,12 @@ func _ready():
 
 func new_game():
 	print("new game")
-	var file = File.new()
-	file.open("user://file_data.json", File.WRITE)
-	file.store_line(to_json(GameStateTemplate.get_gamestate_template()))
-	file.close()
+	#var file = File.new()
+	#file.open("user://file_data.json", File.WRITE)
+	#file.store_line(to_json(GameStateTemplate.get_gamestate_template()))
+	#file.close()
+	var dir = Directory.new()
+	dir.remove("user://file_data.json")
 	ready_fadeout()
 
 func exit():

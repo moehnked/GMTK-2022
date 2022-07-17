@@ -23,5 +23,198 @@
                 }
             }, 
         ]
+    },
+
+
+    "Dread On Open Water":{
+        "name": "Dread On Open Water",
+        "id":"Dread On Open Water",
+        "score":5,
+        "description": "A shadow drifts, languidly beneath the water's surface. Before your crew realizes what it is, your ship is ensared by a monsterous brine",
+        "options": [
+            {
+                "text": "Light the brine ablaze",
+                "result": {
+                    "text": "The crew members set flame to several torches and scortch the brine off the ship. However, a fair amount of supplies were destroyed.",
+                    "reward": [{"resource": "supplies", "value": -1}]
+                }
+            },
+        ]
+    },
+    "Sharks!":{
+        "name": "Sharks!",
+        "id":"Sharks!",
+        "score":3,
+        "description": "A pack of sharks have picked up the scent of warm blood on your ship. They're hungry and viscious.",
+        "options": [
+            {
+                "text": "Craft a bait trap to lure them away",
+                "result": {
+                    "text": "The crew members set flame to several torches and scortch the brine off the ship. However, a fair amount of supplies were destroyed.",
+                    "reward": [{"resource": "supplies", "value": -1}]
+                }
+            },
+            {
+                "text": "Sacrifice ",
+                "result": {
+                    "text": "Your crew attempts to fish for the shark. Some of your crew are adapt harpoonsmen, and manage to land a few.",
+                    "reward": [{"resource": "supplies", "value": 1}]
+                }
+            },
+        ]
+    },
+    "The Red Storm":{
+        "name": "The Red Storm",
+        "id":"The Red Storm",
+        "score":3,
+        "description": "A maroon fog envelopes the ship. What began as a gentle breeze has quickly become a frightening torrent",
+        "options": [
+            {
+                "text": "Batten down the hatches",
+                "result": {
+                    "text": "The crew braces themselves to ride out the unforgivving storm. Though the ship survives, its seen better days.",
+                    "reward": [{"resource": "morale", "value": -1}]
+                }
+            },
+        ]
+    },
+    "Unlucky Omen":{
+        "name": "Unlucky Omen",
+        "id":"Unlucky Omen",
+        "score":3,
+        "description": "They say a seagul carrying an empty oyster is a sign that the route you're on isn't worth the trouble.",
+        "options": [
+            {
+                "text": "Charge ahead, stay the course",
+                "result": {
+                    "text": "You decide to ignore your instincts and trust in the plan. Your journey is difficult, and so this round, there isn't much to show for it.",
+                    "reward": [{"resource": "morale", "value": -2}]
+                }
+            },
+            {
+                "text": "Plot a new course",
+                "result": {
+                    "text": "You decide to forgo the plan, and chart a new course for adventure. Though your crew is impressed, this lengthened the journey by quite a bit.",
+                    "reward": [{"resource": "morale", "value": 2}, {"resource": "supplies", "value": -1}]
+                }
+            },
+        ]
+    },
+    "Charred Albatross":{
+        "name": "Charred Albatross",
+        "id":"Charred Albatross",
+        "score":1,
+        "description": "Just when you thought you we're going to have to eat a deep fried boot, an albatross falls onto the bow of the ship, burnt to a crisp.",
+        "options": [
+            {
+                "text": "Free food is my favorit kind",
+                "result": {
+                    "text": "Who do you know that would pass up a perfectly good bird? Nobody in these waters, certainly.",
+                    "reward": [{"resource": "supplies", "value": 2}]
+                }
+            },
+        ]
+    },
+    "Beguiling Merfolk":{
+        "name": "Beguiling Merfolk",
+        "id":"Beguiling Merfolk",
+        "score":3,
+        "description": "You come across a forsaken alcove that happens to be inhabited by a tribe of merfolk. They are offering to send one of their own in exchange for the goods you have on board",
+        "options": [
+            {
+                "text": "Exchange half your supplies to hire a Merfolk crew",
+                "result": {
+                    "text": "The merfolk are adapt sea farrers. Their natural acclimity to the ocean will prove useful on these uncertain waters.",
+                    "reward": [{"resource": "crew", "value": 1}, {"resource": "supplies", "value": 0.5}]
+                }
+            },
+            {
+                "text": "Pass",
+                "result": {
+                    "text": "You decide to not hire any merfolk today."
+                }
+            },
+        ]
+    },
+    "Paradise Grove":{
+        "name": "Paradise Grove",
+        "id":"Paradise Grove",
+        "score":6,
+        "description": "You have found a legendary island, guarded by a cruel fairy succubus. She will only permit a crew new larger than 3 to enter her sanctuary",
+        "options": [
+            {
+                "text": "Give up your crew members to enter the paradise",
+                "result": {
+                    "text": "The merfolk are adapt sea farrers. Their natural acclimity to the ocean will prove useful on these uncertain waters.",
+                    "reward": [{"reduceTo": "crew", "value": 1}, {"increaseMax":"maxSupplies", "percent":2.0},{"maxOut": "supplies"}]
+                }
+            },
+            {
+                "text": "Pass",
+                "result": {
+                    "text": "You decide to fortune is not worth the life of your comrades",
+                    "reward": [{"resource": "morale", "value": 2}]
+                }
+            },
+        ]
+    },
+    "Missing First Mate":{
+        "name": "Missing First Mate",
+        "id":"Missing First Mate",
+        "score":6,
+        "description": "The first mate has gone missing! They were last seen at midnight on their usual 'evening brood' before vanishing suddenly in the night.",
+        "options": [
+            {
+                "text": "Search the ship extensively",
+                "result": {
+                    "text": "Despite the efforts from the entire crew, no first mates were able to be found.",
+                    "reward": [{"resource": "crew", "value": -1}, {"resource":"morale", "value":-1}]
+                }
+            },
+            {
+                "text": "Light a flare",
+                "result": {
+                    "text": "You light an emergancy flare to signal nearyby ships that you have a situation. Only a few ships come close to check in but no one has seen the first mate.",
+                    "reward": [{"resource": "morale", "value": -2}]
+                }
+            },
+        ]
+    },
+    "A Serpent Writhes":{
+        "name": "A Serpent Writhes",
+        "id":"A Serpent Writhes",
+        "score":6,
+        "description": "A giant, 45ft sea serpant made itself a nest on your ship last night. Now it is napping menacingly on the poop deck.",
+        "options": [
+            {
+                "text": "Attack the serpant",
+                "result": {
+                    "text": "You battle against the vile monster, but many of your crew perished in the fight",
+                    "reward": [{"resource": "supplies", "value": 1}, {"resource":"crew", "percent":0.9}]
+                }
+            },
+            {
+                "text": "Search for eggs",
+                "result": {
+                    "text": "This particular species of sea serpant require firm land to lay their eggs. Seeing none around, it just the next best place, your ship.",
+                    "reward": [{"resource": "supplies", "value": 3}]
+                }
+            },
+        ]
+    },
+    "Crates, Adrift":{
+        "name": "Crates, Adrift",
+        "id":"Crates, Adrift",
+        "score":6,
+        "description": "Crates arrive, caught in your fishing net. Supplies from another crew? contraband confescate by the navy? what could be inside?",
+        "options": [
+            {
+                "text": "Crack open a cold one.",
+                "result": {
+                    "text": "You find a shipment of undeniably delicious yer' guanavanaa fruit.",
+                    "reward": [{"resource": "supplies", "value": 5}, {"resource":"morale", "value":1}]
+                }
+            },
+        ]
     }
 }
