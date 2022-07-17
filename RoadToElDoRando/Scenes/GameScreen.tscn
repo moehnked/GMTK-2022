@@ -17,6 +17,7 @@
 
 [node name="Node2D" parent="." instance=ExtResource( 4 )]
 z_index = -1000
+z_as_relative = false
 
 [node name="ViewportContainer" type="ViewportContainer" parent="."]
 anchor_right = 1.0
@@ -36,5 +37,7 @@ render_target_update_mode = 3
 [node name="ExplorationUnit" parent="." instance=ExtResource( 6 )]
 position = Vector2( 960, 999 )
 scale = Vector2( 0.6, 0.6 )
+z_index = 4096
+z_as_relative = false
 
 [node name="ExplorationManager" parent="." instance=ExtResource( 2 )]

@@ -52,7 +52,7 @@ func _process(delta):
 
 func request_roll (n_dice):
 	exploration_unit.enable_roll()
-	get_tree().call_group("ExplorationUnit", "roll")
+#	get_tree().call_group("ExplorationUnit", "roll")
 	exploration_unit.connect("emit_roll_clicked", self, "full_roll", [n_dice], CONNECT_ONESHOT)
 
 
