@@ -7,7 +7,7 @@ var dome_checker
 var dome_mask = 3
 var cup_mask = 2
 
-var roll_strength = 120
+var roll_strength = 100
 var reroll_strength = 40
 
 var audio_streamer

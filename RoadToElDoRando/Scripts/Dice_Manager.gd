@@ -16,6 +16,8 @@ var spawn_position = Vector3(0,5,-30)
 var timer
 const roll_time = 5
 
+const escape_limit = -40
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,6 +30,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	check_for_escapes()
 	# Roll all dice in the dome
 	if Input.is_action_just_pressed("roll_dice"): # space
 		roll_remaining_dice()
@@ -85,7 +88,17 @@ func initial_roll():
 	timer.set_paused(false)
 	timer.start(roll_time)
 
-
+func check_for_escapes ():
+	for die in dice_array:
+		if die.transform.origin.y <= escape_limit:
+			respawn(die)
+			
+func respawn(die):
+	despawn_die(die)
+	die = spawn_die()
+	die.roll_die(get_spawn_roll(die.transform.origin))
+	
+			
 
 
 func roll_remaining_dice ():
@@ -126,6 +139,7 @@ func finalize_roll ():
 	return final_rolls
 
 func despawn_die (die):
+	remove_child(die)
 	dice_array.erase(die)
 	die.free()
 
@@ -139,6 +153,7 @@ func spawn_die():
 	die.transform.origin = spawn_position
 	add_child(die)
 	dice_array.append(die)
+	return die
 
 func get_spawn_roll(pos):
 	return (-pos).normalized()

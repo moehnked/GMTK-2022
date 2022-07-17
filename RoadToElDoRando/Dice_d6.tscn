@@ -8,6 +8,7 @@ friction = 10.0
 bounce = 0.35
 
 [sub_resource type="BoxShape" id=1]
+margin = 0.8
 
 [sub_resource type="ArrayMesh" id=5]
 resource_name = "Cube"
