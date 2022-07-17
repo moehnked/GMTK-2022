@@ -1,6 +1,6 @@
 extends Node
 
-signal report_roll
+signal report_roll(diceAr)
 var dice_button
 
 var dice_array = []
@@ -14,7 +14,7 @@ var die_prefab = preload("res://Dice_d6.tscn")
 var spawn_position = Vector3(0,10,0)
 
 var timer
-const roll_time = 3
+const roll_time = 6
 
 
 # Called when the node enters the scene tree for the first time.
@@ -72,9 +72,9 @@ func full_roll (n_dice):
 	final_rolls.clear()
 	spawn_dice(n_dice)
 	initial_roll()
-	report_roll()
+	#report_roll()
 	
-func report_roll():
+func emit_report_roll():
 	emit_signal("report_roll", final_rolls)
 
 #### Change later to get actual first roll ####
@@ -107,6 +107,7 @@ func read_dice_values ():
 		roll_remaining_dice()
 		return false
 	else:
+		emit_report_roll()
 		timer.stop()
 		return true
 
