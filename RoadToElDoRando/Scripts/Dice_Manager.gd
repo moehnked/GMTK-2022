@@ -49,7 +49,8 @@ func _process(delta):
 	
 
 func request_roll (n_dice):
-	dice_button = get_tree().get_nodes_in_group("DiceButton")[0];	
+	var g = get_tree().get_nodes_in_group("DiceButton")
+	dice_button = g[0];	
 	dice_button.enable_roll()
 	dice_button.connect("emit_roll_clicked", self, "full_roll", [n_dice], CONNECT_ONESHOT)
 
