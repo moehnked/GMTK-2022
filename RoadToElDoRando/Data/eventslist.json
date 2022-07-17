@@ -25,7 +25,7 @@
 				"result": {
 					"text": "The sun falls below the horizon before the dinghy makes it back to the ship. The crew is gone, in their place a bright white bird's skull scoured clean by the salt water.",
 					"reward": [{
-						"resource": "Relics",
+						"resource": "relic",
 						"value": 1
 					}]
 				}
@@ -50,6 +50,79 @@
 			}
 		}]
 	},
+
+	"oracle": {
+		"name": "Humming Soothsayer",
+		"id": "oracle",
+		"score": 7,
+		"description": "A floating caravan is led by a cloudy-eyed woman who greets you by name. You've never met.",
+		"options": [{
+			"text": "Consult the witch's orb",
+			"result": {
+				"text": "You see all your futures; death, victory, death again. An infinite, watery spiral. She seems shaken, and insists you take the crystal.",
+				"reward": [{
+					"resource": "relic",
+					"value": 1
+				}]
+			}
+		}]
+	},
+
+	"temple1": {
+		"name": "Moss-Covered Temple",
+		"id": "temple1",
+		"score": 7,
+		"description": "A temple of muddy stone and long-forgotten gods perches on a bleak, empty island.",
+		"options": [{
+			"text": "Delve into its mysteries",
+			"result": {
+				"text": "You're not the first to try and claim what's inside. Luckily, that means all the traps have been 'disarmed' by your luckless precedessors.",
+				"reward": [{
+					"resource": "relic",
+					"value": 1
+				}]
+			}
+		}]
+	},
+	"temple2": {
+		"name": "Moss-Covered Temple",
+		"id": "temple2",
+		"score": 5,
+		"description": "A temple of muddy stone and leering gods perches on a sunny, tropical island.",
+		"options": [{
+			"text": "Delve into its mysteries",
+			"result": {
+				"text": "The temple is grand and unspoiled by the passing of time or explorers. Unfortunately, that means all the traps are in pristine, working condition.",
+				"reward": [{
+					"resource": "relic",
+					"value": 1
+				},
+				{
+					"resource": "crew",
+					"value": -1
+				}]
+			}
+		}]
+	},
+
+	"monument": {
+		"name": "The Obelisk",
+		"id": "monument",
+		"score": 8,
+		"description": "A monolith of pure gold juts from the sea, weathered by time and tide.",
+		"options": [{
+			"text": "Scrap it for riches, we'll eat like kings!",
+			"result": {
+				"text": "You chisel and chip at the gilded surface, and secure a king's ransom before the obelisk abruptly dives back below the sea.",
+				"reward": [{
+					"resource": "supplies",
+					"value": 10
+				}]
+			}
+		}]
+	},
+
+
 	"sharks": {
 		"name": "Sharks!",
 		"id": "sharks",

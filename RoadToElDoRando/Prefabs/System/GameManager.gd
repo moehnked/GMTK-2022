@@ -97,7 +97,7 @@ func handle_phases():
 
 
 	gameState.Phase = 4;
-	var phaseRef = get_tree().get_nodes_in_group("RelicPhase")[0]
+	phaseRef = get_tree().get_nodes_in_group("RelicPhase")[0]
 	phaseRef.call("initialize", gameState)
 	update_state(yield(phaseRef, "emit_end_phase"));
 		
