@@ -1,9 +1,7 @@
 extends Node2D
 
 var event = {
-	"id": "siren",
 	"name": "Is that... Singing?",
-	"score": 5,
 	"description": "The whistling of the ocean breeze carries a haunting melody. After a moment, the lookout spots a small islet port-ward.",
 	"options": [
 		{
@@ -28,7 +26,6 @@ var event = {
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
-	
 
 func initialize(e):
 	event = e

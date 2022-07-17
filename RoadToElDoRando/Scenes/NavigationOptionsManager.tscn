@@ -8,7 +8,7 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 932, 241, 0, 0, 0, 0, 1148, 538, 0, 0, 0, 0, 968, 831 )
 }
 
-[node name="NavigationOptionsManager" type="Control" groups=["GamestateObserver"]]
+[node name="NavigationOptionsManager" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 1
@@ -42,7 +42,3 @@ margin_left = 957.0
 margin_top = 847.0
 margin_right = 957.0
 margin_bottom = 847.0
-
-[node name="Options" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
