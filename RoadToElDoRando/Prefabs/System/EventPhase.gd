@@ -2,6 +2,10 @@ extends Node2D
 
 var event = {
 	"name": "Is that... Singing?",
+	"id":"siren",
+	"score":5,
+	"transform_to":"oracle",
+	"transform_name":"Humming Soothsayer",
 	"description": "The whistling of the ocean breeze carries a haunting melody. After a moment, the lookout spots a small islet port-ward.",
 	"options": [
 		{

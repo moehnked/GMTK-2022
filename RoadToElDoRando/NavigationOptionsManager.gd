@@ -20,6 +20,10 @@ var centerpos
 
 var event = {
 	"name": "Is that... Singing?",
+	"id":"siren",
+	"score":5,
+	"transform_to":"oracle",
+	"transform_name":"Humming Soothsayer",
 	"description": "The whistling of the ocean breeze carries a haunting melody. After a moment, the lookout spots a small islet port-ward.",
 	"options": [
 		{
@@ -45,8 +49,10 @@ func startPhase():
 #	for x in range(30):
 	var elist = generateEventList()
 	for e in elist:
+		pass
 		AddOption(e,e,elist[e])
 	SetupDisplayCurve()
+	testAddEvent()
 	update()
 #	AddOption("Dread On Open Water","ev1")
 #	AddOption("The Too-Quiet Cove","ev3",["d:3|3"])
@@ -58,12 +64,51 @@ func startPhase():
 	DisplayNavigationOptions()
 #	update()
 
+func testAddEvent():
+	AddOptionFromEventDict(event)
+
+func AddOptionFromEventDict(e):
+	var newop = option.instance()
+	var newreq = generateOptionCost(e['score'],true)
+	newop.setup(self,e["name"],e["id"],newreq,e["transform_to"],e["transform_name"])
+	options.append(newop)
+	self.add_child(newop)
+
+func AddOption(n,ev,unlock=null,ct=null,ctn=null):
+	var newop = option.instance()
+	newop.setup(self,n,ev,unlock,ct,ctn)
+	options.append(newop)
+	self.add_child(newop)
+
+func generateOptionCost(score,required):
+	var reqs=[]
+	var rng = gamemanager.get_rng()
+	
+	#Generate a dice requirement for unlock/transform. Better outcomes have higher odds of multiple dice.
+	#Score - subjective rating of the event from 1-10
+	
+	var req_nums = [0,0,0,0,0,1,1,1,1,1,1,1,2,2,2,2,2,3,3,4]
+	
+	var num = req_nums[rng.randi()%req_nums.size()]
+	
+	var dString = 'd:'
+	if num == 0 and required: #Do NOT allow transform-bearing setups to go without unlock methods
+		num = 1
+	if num > 0:
+		for i in range(num):
+			dString = dString + String(randi()%6+1) + '|'
+		dString=dString.trim_suffix('|')
+		reqs.append(dString)
+#	print("Generated Requirements: ",dString)
+	return reqs
+
 func _ready():
+	startPhase()
 	pass
 #	yield(get_tree().create_timer(0.5), "timeout")
 #
 #	yield(get_tree().create_timer(2.5), "timeout")
-#	dice_roll_effect([randi()%6+1,randi()%6+1,randi()%6+1,randi()%6+1,randi()%6+1,randi()%6+1])
+	dice_roll_effect([6,randi()%6+1,randi()%6+1,randi()%6+1,randi()%6+1,randi()%6+1,randi()%6+1])
 
 func SetupDisplayCurve():
 
@@ -115,12 +160,6 @@ func UndisplayNavigationOptions():
 			$Tween.interpolate_property(options[i],"rect_position",options[i].rect_position,desiredPosition,tweenSpeed,Tween.TRANS_CUBIC,Tween.EASE_OUT,i*0.01)
 	#Yield for tween completion, then hide
 	$Tween.start()
-
-func AddOption(n,ev,unlock=null,ct=null,ctn=null):
-	var newop = option.instance()
-	newop.setup(self,n,ev,unlock,ct,ctn)
-	options.append(newop)
-	self.add_child(newop)
 
 func generateEventEntry(eventdict):
 	pass
