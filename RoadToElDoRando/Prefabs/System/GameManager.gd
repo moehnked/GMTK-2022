@@ -1,5 +1,18 @@
 extends Node
 
+signal exploration_phase_start
+signal exploration_phase_end
+signal navigation_phase_start
+signal navigation_phase_end
+signal event_phase_start
+signal event_phase_end
+signal end_phase_start
+signal end_phase_end
+signal game_lost
+signal game_won
+signal entered_port
+signal exited_port
+
 var gameState = {
 	"seed":0,
 	"Phase": 0,
@@ -48,30 +61,63 @@ func initialize():
 # Lose Screen
 # Game Summary
 
-# PHASE 1: Exploration
-# Roll dice to determine how much progress is made towards port
-# If Progress > Dist. to Port, show Port scene
-# Else to Navigation Phase
+func update_state( data ):
+	pass
 
-# Phase 2: Navigation Phase
-# Randomly select n events to choose from and assign dice requirements
-# Show Available Options
-# Roll Dice
-# Modify dice
-# Choose the event
+func handle_phases():
+	# PHASE 1: Exploration
+	# Roll dice to determine how much progress is made towards port
+	# If Progress > Dist. to Port, show Port scene
+	# Else to Navigation Phase
 
-# Phase 3: Event Phase
-# Show the name and description, move props on screen
-# Select an option from the list in the event definition
-# If the selected option has a dice requirement, roll dice
-# Display the rewards and costs
+	emit_signal("exploration_phase_start");
+	
+	update_state(yield(self, 'exploration_phase_end'));
+	
+	if gameState.CurrentDistance <= gameState.PortDistance:
+		emit_signal("entered_port");
+		update_state(yield(self, 'exited_port'));
+		return true;
+		
+	
+	# Phase 2: Navigation Phase
+	# Randomly select n events to choose from and assign dice requirements
+	# Show Available Options
+	# Roll Dice
+	# Modify dice
+	# Choose the event
+	gameState.Phase = 2;
+	emit_signal("navigation_phase_start");
+	
+	update_state(yield(self, 'navigation_phase_end'));
+	
+	# Phase 3: Event Phase
+	# Show the name and description, move props on screen
+	# Select an option from the list in the event definition
+	# If the selected option has a dice requirement, roll dice
+	# Display the rewards and costs
+	gameState.Phase = 3;
+	emit_signal("event_phase_start");
 
-# Phase 4: Relic Phase
-# Each relic you own is rolled in sequence. Boons/curses are applied.
+	update_state(yield(self, "event_phase_end"));
+	
+	# Phase 4: Relic Phase
+	# Each relic you own is rolled in sequence. Boons/curses are applied.
+	gameState.Phase = 3;
+	emit_signal("relic_phase_start");
+	update_state(yield(self, "relic_phase_end"));
+		
+	# End Phase
+	# If at end phase your ship has 0 crew, the game is lost
+	# Back to Exploration Phase
+	gameState.Phase = 4
+	emit_signal("end_phase_start");
+	
+	update_state(yield(self, "end_phase_end"));
+	
+	if gameState.Ship.Crew <= 0:
+		emit_signal("game_lost");
 
-# End Phase
-# If at end phase your ship has 0 crew, the game is lost
-# Back to Exploration Phase
 
 func load_game():
 	var file = File.new()
