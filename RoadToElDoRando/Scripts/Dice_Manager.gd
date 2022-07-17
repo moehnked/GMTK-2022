@@ -104,7 +104,11 @@ func read_dice_values ():
 			despawn_die(die)
 	dice_array = reroll
 	if dice_array.size() != 0:
-		roll_remaining_dice()
+#		roll_remaining_dice()
+		var num = dice_array.size()
+		for die in dice_array:
+			despawn_die(die)
+		spawn_dice(num)
 		return false
 	else:
 		emit_report_roll()
@@ -117,6 +121,8 @@ func finalize_roll ():
 
 func despawn_die (die):
 	print("DIE DIE DIE")
+	die.queue_free()
+	dice_array.erase(die)
 
 
 func spawn_dice (n):
