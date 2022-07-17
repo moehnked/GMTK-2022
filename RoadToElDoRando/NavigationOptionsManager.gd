@@ -19,23 +19,25 @@ var vertscale = 0.8 #Distorts the y-axis of the display area up so that labels h
 var centerpos
 
 func _ready():
-	centerpos = self.rect_position + self.rect_size/2 + self.rect_size/4
-	for x in range(30):
-		generateEventList()
+	centerpos = self.rect_position + self.rect_size/2 + self.rect_size/5
+#	for x in range(30):
+	var elist = generateEventList()
+	for e in elist:
+		AddOption(e,e,elist[e])
 	SetupDisplayCurve()
 	update()
-	AddOption("Dread On Open Water","ev1")
-	AddOption("The Too-Quiet Cove","ev3",["d:3|3"])
-	AddOption("Is That...Singing?","ev4",["d:1|4"])
-	AddOption("A Storm In Red","ev4",["d:1|2"],"storm_safe_1","The Eye Of The Storm")
-	AddOption("Land, Ho!","ev5",["d:3|1|4"])
-	AddOption("He Who Came Before","ev0",["d:6"])
+#	AddOption("Dread On Open Water","ev1")
+#	AddOption("The Too-Quiet Cove","ev3",["d:3|3"])
+#	AddOption("Is That...Singing?","ev4",["d:1|4"])
+#	AddOption("A Storm In Red","ev4",["d:1|2"],"storm_safe_1","The Eye Of The Storm")
+#	AddOption("Land, Ho!","ev5",["d:3|1|4"])
+#	AddOption("He Who Came Before","ev0",["d:6"])
 	SetNavigationOptionsStart()
 	update()
 	yield(get_tree().create_timer(0.5), "timeout")
 	DisplayNavigationOptions()
 	yield(get_tree().create_timer(2.5), "timeout")
-	dice_roll_effect([1,3,5,6,3,2])
+	dice_roll_effect([randi()%6+1,randi()%6+1,randi()%6+1,randi()%6+1,randi()%6+1,randi()%6+1])
 	#UndisplayNavigationOptions()
 
 func SetupDisplayCurve():
@@ -113,7 +115,7 @@ func SelectOption(op):
 
 func RaiseEvent(op):
 	UndisplayNavigationOptions()
-	GameManager.emit_signal("end_phase",2)
+	GameManager.emit_signal("event_phase_end",1)
 	print("Activated Event: ",op.eventID)
 
 func dice_roll_effect(ary):
@@ -145,7 +147,7 @@ func firebolt(op):
 	bolt.queue_free()
 
 
-var eventlist = ["ev1","ev2","ev3","ev4","ev5","ev6","ev7","ev8","ev9","ev10"]
+var eventlist = ["Dread On Open Water","Sharks!","The Red Storm","Unlucky Omen","Charred Albatross","Beguiling Merfolk","Paradise Grove","Missing First Mate","A Serpent Writhes","Crates, Adrift"]
 
 func generateEventList():
 	var rng = GameManager.get_rng()
@@ -159,17 +161,41 @@ func generateEventList():
 	#Check to make sure there's at least one no-cost option. if not, add a calamity
 	var n = options_num[rng.randi()%options_num.size()-1]
 	print("Number of events: ",n)
-	for i in range(n+1):
-		var rndindex = round(rng.randi() % eventlist.size()-1)
+	for i in range(n):
+		var rndindex = (rng.randi() % eventlist.size()-1)
 		var chosenEvent = eventlist[rndindex]
+		while(events.has(chosenEvent)):
+			rndindex = (rng.randi() % eventlist.size()-1)
+			chosenEvent = eventlist[rndindex]
 		var requirementsNum = req_num[rng.randi() % req_num.size()-1]
 		var requirements = []
 		for j in range(requirementsNum):
-			requirements.append(rng.randi()%7)
+			requirements.append(rng.randi()%6+1)
 		#Check if the event has a transform, and if so, whether it passes the 50% chance to transform instead of lock
-		
-		events[chosenEvent] = requirements
+		var diceString = "d:"
+		var requirementsFormatted = []
+		for r in requirements:
+			diceString = diceString + String(r) + '|'
+		diceString = diceString.trim_suffix('|')
+		if requirementsNum>0:
+			requirementsFormatted.append(diceString)
+		events[chosenEvent] = requirementsFormatted
+		print("Event ",chosenEvent, " : ",requirementsFormatted)
 	
 	var isNoCostOption = false
+	
+	for entry in events: #Check if there's at least one option that can always be selected. TODO: Weight this to choose Calamity more often
+		if events[entry].size() == 0:
+			isNoCostOption = true
+			break
+	if isNoCostOption == false:
+		print("Guaranteeing outcome")
+		var rndindex = (rng.randi() % eventlist.size()-1)
+		var newEvent = eventlist[rndindex]
+		while events.has(newEvent):
+			rndindex = (rng.randi() % eventlist.size()-1)
+			newEvent = eventlist[rndindex]
+		events[newEvent] = []
+	
 	print(events)
 	return events

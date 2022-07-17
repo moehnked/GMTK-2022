@@ -40,7 +40,7 @@ func setup(man,n,event,unlockstr = null,tf = null,tfn=null):
 	unlockRequirement = unlockstr
 	transformTo = tf
 	transformDisplay = tfn
-	if unlockRequirement == null or transformTo:
+	if unlockRequirement.size() == 0 or transformTo:
 		isLocked=false
 	UpdateSprite()
 	RegisterUnlocks()
@@ -63,9 +63,6 @@ func deactivateRollRequirement(r): #Allocate a die roll and deactivate that die.
 					else:
 						print("Tried to unlock/transform an option without either state.")
 				return true
-			else:
-				print("Mismatch between requirements and DiceRequirements")
-	
 
 func unlock():
 	pass
