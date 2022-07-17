@@ -64,9 +64,9 @@ func initialize():
 # Game Summary
 
 func update_state( data ):
-	if 'CurrentDistance' in data:
-		$ProgressTracker.set_distance(data['CurrentDistance'])
-
+	gameState = data;
+	pass
+	
 func handle_phases():
 	# PHASE 1: Exploration
 	# Roll dice to determine how much progress is made towards port
@@ -76,13 +76,16 @@ func handle_phases():
 	$ExplorationManager.start_phase(gameState);	
 	
 	update_state(yield($ExplorationManager, 'end_phase'));
-	print(gameState);
-	return;
 	
 	if gameState.CurrentDistance <= gameState.PortDistance:
 		emit_signal("entered_port");
 		update_state(yield(self, 'exited_port'));
 		return true;
+		
+	var navMgr = $"../UI/NavigationOptionsManager"
+	navMgr.startPhase()
+	
+	yield(self, 'navigation_phase_end');
 		
 	
 	# Phase 2: Navigation Phase
