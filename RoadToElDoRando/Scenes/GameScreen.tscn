@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Prefabs/System/GameManager.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/ExplorationManager.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Scenes/Tests/test3.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Main.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Prefabs/UI/ExplorationUnit.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Prefabs/System/EventPhase.tscn" type="PackedScene" id=7]
 
 [node name="GameScreen" type="Node2D"]
 
@@ -41,3 +42,6 @@ position = Vector2( 960, 999 )
 scale = Vector2( 0.6, 0.6 )
 z_index = 4096
 z_as_relative = false
+
+[node name="EventPhase" parent="ViewportContainer/Viewport" instance=ExtResource( 7 )]
+z_index = 3

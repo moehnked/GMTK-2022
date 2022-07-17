@@ -186,8 +186,8 @@ func RemoveOption(op):
 func SelectOption(op):
 	if op in options:
 		RaiseEvent(op)
-		$Tween.interpolate_property(op,"rect_position",op.rect_position,$EventLocation.rect_position - op.rect_size/2,0.6,Tween.TRANS_CUBIC,Tween.EASE_OUT,1)
-		$Tween.start()
+		#$Tween.interpolate_property(op,"rect_position",op.rect_position,$EventLocation.rect_position - op.rect_size/2,0.6,Tween.TRANS_CUBIC,Tween.EASE_OUT,1)
+		#$Tween.start()
 	else:
 		print("ERROR: OPTION NOT IN LIST")
 

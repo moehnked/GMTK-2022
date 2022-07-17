@@ -107,7 +107,8 @@ func handle_phases():
 	gameState.Phase = 3;
 	emit_signal("event_phase_start");
 	
-	get_tree().call_group("EventPhase","initialize",handoffObject)
+	#starts Event Phase
+	get_tree().call_group("EventPhase","initialize",handoffObject, gameState)
 
 	update_state(yield(self, "event_phase_end"));
 	

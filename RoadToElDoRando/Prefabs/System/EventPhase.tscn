@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Prefabs/System/EventPhase.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/UI/region.png" type="Texture" id=2]
@@ -62,8 +62,8 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"points": PoolRealArray( 963, -0.25, 0, 0.25, 0, 963, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0.9, 1.5 )
+"points": PoolRealArray( 963, -0.25, 0, 0.25, 0, 963, -0.25, 0, 0.25, 0, 963, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.9, 1.5 )
 }
 tracks/5/type = "bezier"
 tracks/5/path = NodePath("../ResultsText:position:y")
@@ -72,8 +72,8 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"points": PoolRealArray( 977, -0.25, 0, 0.25, 0, 504, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0.9, 1.5 )
+"points": PoolRealArray( 1196, -0.25, 0, 0.25, 0, 977, -0.25, 0, 0.25, 0, 504, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.9, 1.5 )
 }
 tracks/6/type = "bezier"
 tracks/6/path = NodePath("../ResultsText:modulate:r")
@@ -207,69 +207,6 @@ tracks/6/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=4]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/path = NodePath("../ResultsText:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"points": PoolRealArray( 963, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
-}
-tracks/1/type = "bezier"
-tracks/1/path = NodePath("../ResultsText:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"points": PoolRealArray( 980, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
-}
-tracks/2/type = "bezier"
-tracks/2/path = NodePath("../ResultsText:modulate:r")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
-}
-tracks/3/type = "bezier"
-tracks/3/path = NodePath("../ResultsText:modulate:g")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
-}
-tracks/4/type = "bezier"
-tracks/4/path = NodePath("../ResultsText:modulate:b")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
-}
-tracks/5/type = "bezier"
-tracks/5/path = NodePath("../ResultsText:modulate:a")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
-}
-
 [sub_resource type="Animation" id=1]
 resource_name = "reveal"
 length = 2.0
@@ -383,7 +320,7 @@ tracks/10/loop_wrap = true
 tracks/10/imported = false
 tracks/10/enabled = true
 tracks/10/keys = {
-"points": PoolRealArray( 977, -0.25, 0, 0.25, 0 ),
+"points": PoolRealArray( 1211, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0 )
 }
 tracks/11/type = "bezier"
@@ -439,20 +376,19 @@ tracks/15/keys = {
 "values": [ Vector2( 1790, 1287 ) ]
 }
 
-[node name="EventPhase" type="Node2D"]
+[node name="EventPhase" type="Node2D" groups=["EventPhase"]]
 script = ExtResource( 1 )
 
 [node name="DescriptionAnimated" type="Node2D" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="DescriptionAnimated"]
-autoplay = "reveal"
 anims/HideOptions = SubResource( 2 )
 anims/HideResults = SubResource( 3 )
-anims/RESET = SubResource( 4 )
 anims/reveal = SubResource( 1 )
 
 [node name="Column1" type="Sprite" parent="DescriptionAnimated"]
-position = Vector2( 1790, 2371 )
+position = Vector2( 1790, 1314 )
+rotation = -1.47849
 scale = Vector2( 3.22574, 3.22574 )
 z_index = 1
 texture = ExtResource( 5 )
@@ -462,12 +398,13 @@ flip_h = true
 [node name="Description" type="Sprite" parent="DescriptionAnimated/Column1"]
 self_modulate = Color( 0.701961, 0.690196, 0.764706, 1 )
 light_mask = 4
-position = Vector2( -111.292, -273.945 )
+position = Vector2( -323.027, -273.945 )
 scale = Vector2( 0.324361, 0.324361 )
 z_index = -1
 texture = ExtResource( 2 )
 
 [node name="Label" type="Label" parent="DescriptionAnimated/Column1/Description"]
+modulate = Color( 1, 1, 1, 0 )
 light_mask = 4
 margin_left = 504.0
 margin_top = -123.0
@@ -481,14 +418,15 @@ autowrap = true
 
 [node name="Option3" parent="DescriptionAnimated/Column1/Description" instance=ExtResource( 10 )]
 visible = false
-position = Vector2( 700.562, 476.606 )
+position = Vector2( 703.429, -28.9826 )
 
 [node name="Option2" parent="DescriptionAnimated/Column1/Description" instance=ExtResource( 10 )]
 visible = false
-position = Vector2( 693.872, 316.041 )
+position = Vector2( 703.429, 0.645477 )
 
 [node name="Option1" parent="DescriptionAnimated/Column1/Description" instance=ExtResource( 10 )]
 visible = false
+position = Vector2( 703.429, 31.2293 )
 
 [node name="Column1" type="Sprite" parent="DescriptionAnimated/Column1"]
 position = Vector2( 2.79004, -81.2217 )
@@ -522,13 +460,9 @@ position = Vector2( 724, 92 )
 initialText = "Is that... Singing?"
 revealOnReady = false
 
-[node name="Timer" type="Timer" parent="."]
-one_shot = true
-autostart = true
-
 [node name="ResultsText" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 963, 980 )
+position = Vector2( 963, 1196 )
 scale = Vector2( 0.65047, 0.65047 )
 texture = ExtResource( 11 )
 
@@ -551,7 +485,9 @@ text = "The sun falls below the horizon before the dinghy makes it back to the s
 [node name="descTTL" type="Timer" parent="."]
 wait_time = 5.0
 
+[node name="BannerPoint" type="Node2D" parent="."]
+position = Vector2( 935, 192 )
+
 [connection signal="emit_clicked" from="DescriptionAnimated/Column1/Description/Option3" to="." method="parse_option_selected"]
 [connection signal="emit_clicked" from="DescriptionAnimated/Column1/Description/Option2" to="." method="parse_option_selected"]
 [connection signal="emit_clicked" from="DescriptionAnimated/Column1/Description/Option1" to="." method="parse_option_selected"]
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
