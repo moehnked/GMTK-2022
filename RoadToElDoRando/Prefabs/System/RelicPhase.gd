@@ -22,6 +22,7 @@ func initialize(_gamestate):
 
 func resolve_relic_rolls(ary):
 	print(ary)
+	var count = 0
 	var win = true
 	var count = 0
 	for r in ary.values():
