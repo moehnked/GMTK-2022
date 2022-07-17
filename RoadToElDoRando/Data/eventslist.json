@@ -11,15 +11,15 @@
                 "text": "Stay the course and put the wail out of your mind",
                 "result": {
                     "text": "The crew mutters at their work and tempers are high until the wailing falls out of earshot",
-                    "reward": [{"resource": "morale", "value": -1}]
+                    "reward": []
                 }
             },
             {
                 "text": "Send a crew to investigate",
-                "cost": [{"resource": "crew", "value": 1}],
+                "cost": [{"resource": "Crew", "value": 1}],
                 "result": {
                     "text": "The sun falls below the horizon before the dinghy makes it back to the ship. The crew is gone, in their place a bright white bird's skull scoured clean by the salt water.",
-                    "reward": [{"resource": "relic_4", "value": 1}]
+                    "reward": [{"resource": "Crew", "value": -1}]
                 }
             }, 
         ]
@@ -36,7 +36,7 @@
                 "text": "Light the brine ablaze",
                 "result": {
                     "text": "The crew members set flame to several torches and scortch the brine off the ship. However, a fair amount of supplies were destroyed.",
-                    "reward": [{"resource": "supplies", "value": -1}]
+                    "reward": [{"resource": "Supplies", "value": -1}]
                 }
             },
         ]
@@ -51,14 +51,14 @@
                 "text": "Craft a bait trap to lure them away",
                 "result": {
                     "text": "The crew members set flame to several torches and scortch the brine off the ship. However, a fair amount of supplies were destroyed.",
-                    "reward": [{"resource": "supplies", "value": -1}]
+                    "reward": [{"resource": "Supplies", "value": -1}]
                 }
             },
             {
                 "text": "Sacrifice ",
                 "result": {
                     "text": "Your crew attempts to fish for the shark. Some of your crew are adapt harpoonsmen, and manage to land a few.",
-                    "reward": [{"resource": "supplies", "value": 1}]
+                    "reward": [{"resource": "Supplies", "value": 1}]
                 }
             },
         ]
@@ -73,7 +73,7 @@
                 "text": "Batten down the hatches",
                 "result": {
                     "text": "The crew braces themselves to ride out the unforgivving storm. Though the ship survives, its seen better days.",
-                    "reward": [{"resource": "morale", "value": -1}]
+                    "reward": []
                 }
             },
         ]
@@ -88,14 +88,14 @@
                 "text": "Charge ahead, stay the course",
                 "result": {
                     "text": "You decide to ignore your instincts and trust in the plan. Your journey is difficult, and so this round, there isn't much to show for it.",
-                    "reward": [{"resource": "morale", "value": -2}]
+                    "reward": []
                 }
             },
             {
                 "text": "Plot a new course",
                 "result": {
                     "text": "You decide to forgo the plan, and chart a new course for adventure. Though your crew is impressed, this lengthened the journey by quite a bit.",
-                    "reward": [{"resource": "morale", "value": 2}, {"resource": "supplies", "value": -1}]
+                    "reward": [{"resource": "Supplies", "value": -1}]
                 }
             },
         ]
@@ -107,10 +107,10 @@
         "description": "Just when you thought you we're going to have to eat a deep fried boot, an albatross falls onto the bow of the ship, burnt to a crisp.",
         "options": [
             {
-                "text": "Free food is my favorit kind",
+                "text": "Free food is my favorite kind",
                 "result": {
                     "text": "Who do you know that would pass up a perfectly good bird? Nobody in these waters, certainly.",
-                    "reward": [{"resource": "supplies", "value": 2}]
+                    "reward": [{"resource": "Supplies", "value": 2}]
                 }
             },
         ]
@@ -125,7 +125,7 @@
                 "text": "Exchange half your supplies to hire a Merfolk crew",
                 "result": {
                     "text": "The merfolk are adapt sea farrers. Their natural acclimity to the ocean will prove useful on these uncertain waters.",
-                    "reward": [{"resource": "crew", "value": 1}, {"resource": "supplies", "value": 0.5}]
+                    "reward": [{"resource": "Crew", "value": 1}, {"resource": "Supplies", "value": 0.5}]
                 }
             },
             {
@@ -153,7 +153,7 @@
                 "text": "Pass",
                 "result": {
                     "text": "You decide to fortune is not worth the life of your comrades",
-                    "reward": [{"resource": "morale", "value": 2}]
+                    "reward": []
                 }
             },
         ]
@@ -168,14 +168,14 @@
                 "text": "Search the ship extensively",
                 "result": {
                     "text": "Despite the efforts from the entire crew, no first mates were able to be found.",
-                    "reward": [{"resource": "crew", "value": -1}, {"resource":"morale", "value":-1}]
+                    "reward": [{"resource": "Crew", "value": -1}, ]
                 }
             },
             {
                 "text": "Light a flare",
                 "result": {
                     "text": "You light an emergancy flare to signal nearyby ships that you have a situation. Only a few ships come close to check in but no one has seen the first mate.",
-                    "reward": [{"resource": "morale", "value": -2}]
+                    "reward": []
                 }
             },
         ]
@@ -190,14 +190,14 @@
                 "text": "Attack the serpant",
                 "result": {
                     "text": "You battle against the vile monster, but many of your crew perished in the fight",
-                    "reward": [{"resource": "supplies", "value": 1}, {"resource":"crew", "percent":0.9}]
+                    "reward": [{"resource": "Supplies", "value": 1}, {"resource":"Crew", "percent":0.9}]
                 }
             },
             {
                 "text": "Search for eggs",
                 "result": {
                     "text": "This particular species of sea serpant require firm land to lay their eggs. Seeing none around, it just the next best place, your ship.",
-                    "reward": [{"resource": "supplies", "value": 3}]
+                    "reward": [{"resource": "Supplies", "value": 3}]
                 }
             },
         ]
@@ -212,7 +212,7 @@
                 "text": "Crack open a cold one.",
                 "result": {
                     "text": "You find a shipment of undeniably delicious yer' guanavanaa fruit.",
-                    "reward": [{"resource": "supplies", "value": 5}, {"resource":"morale", "value":1}]
+                    "reward": [{"resource": "Supplies", "value": 5}]
                 }
             },
         ]

@@ -84,6 +84,8 @@ func init_option(option_node, index):
 
 func parse_option_selected(n):
 	var op = event["options"][n]
+	for r in op.result.reward:
+		parse_reward(r)
 	$OptionSelected.play()
 	$ResultsText/RichTextLabel.bbcode_text = op.result.text
 	$ResultsText/RichTextLabel.bbcode_text = "[center]"+$ResultsText/RichTextLabel.bbcode_text+"[/center]"
@@ -91,6 +93,17 @@ func parse_option_selected(n):
 	targetEventBanner.queue_free()
 	targetEventBanner = null
 	pass
+
+func parse_reward(reward):
+	if "resource" in reward:
+		update_resource(reward)
+	pass
+
+func update_resource(r):
+	if "value" in r:
+		gameState["Ship"][r.resource] += r.value
+	elif "percent" in r:
+		gameState["Ship"][r.resource] *= r.percent
 
 func set_viewing_options():
 	isReadingResult = true

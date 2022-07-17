@@ -6,7 +6,7 @@ const template = {
 	"Phase": 0,
 	"Relics":0,
 	"Ship":{
-		"MaxSupplies":5,
+		"MaxSupplies":99,
 		"Supplies":5,
 		"Crew":2,
 	},
