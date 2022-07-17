@@ -108,7 +108,7 @@ func SelectOption(op):
 
 func RaiseEvent(op):
 	UndisplayNavigationOptions()
-	emit_signal("end_phase",op)
+#	emit_signal("end_phase",op)
 	print("Activated Event: ",op.eventID)
 
 func dice_roll_effect(ary):

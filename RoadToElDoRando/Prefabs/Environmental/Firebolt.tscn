@@ -55,7 +55,6 @@ amount = 100
 lifetime = 0.2
 explosiveness = 0.1
 randomness = 0.3
-local_coords = false
 process_material = SubResource( 5 )
 
 [node name="Tween" type="Tween" parent="."]
