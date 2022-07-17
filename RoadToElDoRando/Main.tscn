@@ -24,7 +24,6 @@ script = ExtResource( 3 )
 [node name="Dice" type="Node" parent="Dice Manager"]
 
 [node name="Timer" type="Timer" parent="Dice Manager"]
-one_shot = true
 
 [node name="Playmat" parent="." instance=ExtResource( 2 )]
 transform = Transform( 40, 0, 0, 0, 30, 0, 0, 0, 40, 0, 0, 0 )

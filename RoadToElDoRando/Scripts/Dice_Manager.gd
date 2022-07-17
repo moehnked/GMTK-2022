@@ -30,27 +30,27 @@ func _process(delta):
 	# Roll all dice in the dome
 	if Input.is_action_just_pressed("roll_dice"):
 		roll_remaining_dice()
-	
+
 	if timer.is_stopped():
 		read_dice_values()
-	
+
 	# accept and read all values in the dome
 	if Input.is_action_just_pressed("finalize_roll"):
 		finalize_roll()
-	
+
 	# Read the face values of all dice in the dome
 	if Input.is_action_just_pressed("read_value"):
 		for die in dice_array:
 			print("in Manager: ", die.read_face())
-	
+
 	# Spawn a single die
 	if Input.is_action_just_pressed("spawn_die"):
 		spawn_die()
-	
+
 
 func request_roll (n_dice):
 	var g = get_tree().get_nodes_in_group("DiceButton")
-	dice_button = g[0];	
+	dice_button = g[0];
 	dice_button.enable_roll()
 	dice_button.connect("emit_roll_clicked", self, "full_roll", [n_dice], CONNECT_ONESHOT)
 
@@ -60,7 +60,7 @@ func request_roll (n_dice):
 # roll n dice
 # if a dice doesn't land
 	# reroll it
-# if it does, 
+# if it does,
 	# add the die object and roll value into final_rolls
 	# despawn the die
 # signal when all dice are done rolling
@@ -72,14 +72,14 @@ func full_roll (n_dice):
 	final_rolls.clear()
 	spawn_dice(n_dice)
 	initial_roll()
-	
+
 func emit_report_roll():
 	emit_signal("report_roll", final_rolls)
 
 #### TODO Change later to get actual first roll ####
 func initial_roll():
 	roll_remaining_dice()
-	
+
 
 func roll_remaining_dice ():
 	for die in dice_array:
@@ -103,12 +103,14 @@ func read_dice_values ():
 			despawn_die(die)
 	dice_array = reroll
 	if dice_array.size() != 0:
-		roll_remaining_dice()
-#		var num = dice_array.size()
-#		for die in dice_array:
-#			despawn_die(die)
-#		spawn_dice(num)
-#		return false
+#		roll_remaining_dice()
+		var num = dice_array.size()
+		print("Dead dice, respawning ",num," dice")
+		for die in dice_array:
+			despawn_die(die)
+		timer.start(roll_time)
+		spawn_dice(num)
+		return false
 	else:
 		emit_report_roll()
 		for die in dice_array:
@@ -122,20 +124,16 @@ func finalize_roll ():
 
 func despawn_die (die):
 	print("DIE DIE DIE")
-	die.queue_free()
+	die.free()
 	dice_array.erase(die)
 
 
 func spawn_dice (n):
 	for i in range(n):
 		spawn_die()
-		
+
 func spawn_die():
 	var die = die_prefab.instance()
 	die.transform.origin = spawn_position
 	add_child(die)
 	dice_array.append(die)
-	
-	
-
-
