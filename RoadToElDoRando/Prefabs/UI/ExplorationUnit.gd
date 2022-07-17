@@ -11,6 +11,11 @@ func _ready():
 	pass # Replace with function body.
 
 
+func enable_relic():
+	print("relic time")
+	$AnimationPlayer.play("null-to-relic")
+	enable_pressable()
+
 func enable_roll():
 	print("enabling")
 	$AnimationPlayer.play("null-to-roll")

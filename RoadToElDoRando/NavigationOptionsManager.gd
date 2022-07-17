@@ -47,7 +47,7 @@ var event = {
 	]
 }
 
-func startPhase():
+func startPhase( gameState ):
 	centerpos = self.rect_position + self.rect_size/2 + self.rect_size/5
 #	for x in range(30):
 	var elist = generateEventList()
@@ -69,7 +69,7 @@ func startPhase():
 	# Dice
 	diceMgr = get_tree().get_nodes_in_group('dice_manager')[0];
 	diceMgr.connect('report_roll', self, 'dice_roll_effect');
-	diceMgr.request_roll(6);
+	diceMgr.request_roll( gameState.Ship.Crew );
 #	update()
 
 func testAddEvent():
