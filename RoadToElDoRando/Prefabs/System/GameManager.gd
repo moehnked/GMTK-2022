@@ -86,7 +86,7 @@ func handle_phases():
 	var navMgr = $"../UI/NavigationOptionsManager"
 	navMgr.startPhase()
 	
-	yield(self, 'navigation_phase_end');
+	var handoffObject = yield(self, 'navigation_phase_end');
 		
 	
 	# Phase 2: Navigation Phase
@@ -96,9 +96,9 @@ func handle_phases():
 	# Modify dice
 	# Choose the event
 	gameState.Phase = 2;
-	emit_signal("navigation_phase_start");
+#	emit_signal("navigation_phase_start");
 	
-	update_state(yield(self, 'navigation_phase_end'));
+#	update_state(yield(self, 'navigation_phase_end'));
 	
 	# Phase 3: Event Phase
 	# Show the name and description, move props on screen
@@ -107,6 +107,8 @@ func handle_phases():
 	# Display the rewards and costs
 	gameState.Phase = 3;
 	emit_signal("event_phase_start");
+	
+	get_tree().call_group("EventPhase","initialize",handoffObject)
 
 	update_state(yield(self, "event_phase_end"));
 	

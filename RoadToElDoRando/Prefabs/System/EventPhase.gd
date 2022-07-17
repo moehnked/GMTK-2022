@@ -26,10 +26,21 @@ var event = {
 	]
 }
 
+var isReadingResult = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
+
+func _process(delta):
+	if Input.is_action_just_released("select") and isReadingResult:
+		isReadingResult = false
+		$DescriptionAnimated/AnimationPlayer.play("HideResults")
+
+func end_phase():
+	print("ending phase")
+	#modify game state
+	#move on to next phase
 
 func initialize(e):
 	event = e
@@ -55,6 +66,9 @@ func parse_option_selected(n):
 	$ResultsText/RichTextLabel.bbcode_text = "[center]"+$ResultsText/RichTextLabel.bbcode_text+"[/center]"
 	$DescriptionAnimated/AnimationPlayer.play("HideOptions")
 	pass
+
+func set_viewing_options():
+	isReadingResult = true
 
 func _on_Timer_timeout():
 	initialize(event)
