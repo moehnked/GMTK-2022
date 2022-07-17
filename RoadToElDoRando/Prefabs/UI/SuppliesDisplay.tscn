@@ -15,20 +15,8 @@ script/source = "extends Node2D
 # var a = 2
 # var b = \"text\"
 
-var _val
-
 func update_text(value):
-	value = floor(value);
-	$AudioStreamPlayer.play();
-	var step = value / abs(value);
-	$Timer.paused = false;	
-	while _val != value:
-		yield($Timer, 'timeout');
-		_val += step;
-		$SuppliesLabel.set_text(str(_val));
-
-func set_text(value):
-	$AudioStreamPlayer.play();
+	$AudioStreamPlayer.play()
 	$SuppliesLabel.set_text(str(value));
 
 # Called when the node enters the scene tree for the first time.

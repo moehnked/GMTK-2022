@@ -22,6 +22,13 @@ func initialize(_gamestate):
 
 func resolve_relic_rolls(ary):
 	print(ary)
+	var win = true
+	for r in ary.values():
+		if r != 6:
+			win = false
+	if win == true:
+		get_tree().change_scene("res://Scenes/winScreen.tscn")
+	
 	diceMgr.disconnect('report_roll', self, 'dice_roll_effect');
 	emit_signal("emit_end_phase", gameState)
 	
