@@ -119,6 +119,15 @@
 					"value": 10
 				}]
 			}
+		},{
+			"text": "A work of art beyond reckoning.",
+			"result": {
+				"text": "It takes immense effort, but you manage to bring the entire structure aboard. It hums with power.",
+				"reward": [{
+					"resource": "relic",
+					"value": 2
+				}]
+			}
 		}]
 	},
 
@@ -282,6 +291,9 @@
 					}, {
 						"resource": "supplies",
 						"value": 40
+					}, {
+						"resource": "relic",
+						"value": 4
 					}]
 				}
 			},
