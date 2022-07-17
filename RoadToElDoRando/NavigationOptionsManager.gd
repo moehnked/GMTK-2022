@@ -16,6 +16,7 @@ var tweenSpeed = 1.1 #Seconds to arrive on-screen
 var dist = 520 #How far to display from center of screen
 var vertscale = 0.8 #Distorts the y-axis of the display area up so that labels have better vertical spacing
 
+var diceMgr
 var centerpos
 
 var event = {
@@ -62,6 +63,11 @@ func startPhase():
 #	AddOption("He Who Came Before","ev0",["d:6"])
 	SetNavigationOptionsStart()
 	DisplayNavigationOptions()
+	
+	# Dice
+	diceMgr = get_tree().get_nodes_in_group('dice_manager')[0];
+	diceMgr.connect('report_roll', self, 'dice_roll_effect');
+	diceMgr.request_roll(4);
 #	update()
 
 func testAddEvent():
@@ -103,12 +109,12 @@ func generateOptionCost(score,required):
 	return reqs
 
 func _ready():
-	startPhase()
+#	startPhase()
 	pass
 #	yield(get_tree().create_timer(0.5), "timeout")
 #
 #	yield(get_tree().create_timer(2.5), "timeout")
-	dice_roll_effect([6,randi()%6+1,randi()%6+1,randi()%6+1,randi()%6+1,randi()%6+1,randi()%6+1])
+#	dice_roll_effect([6,randi()%6+1,randi()%6+1,randi()%6+1,randi()%6+1,randi()%6+1,randi()%6+1])
 
 func SetupDisplayCurve():
 
@@ -183,12 +189,13 @@ func RaiseEvent(op):
 	print("Activated Event: ",op.eventID)
 
 func dice_roll_effect(ary):
+	diceMgr.disconnect('report_dice', self, 'dice_roll_effect');
 	print("Applying roll of ",ary)
 	if selectedOption:
 		return #Already picked, don't need to apply dice
 	for roll in ary:
 		for option in options:
-			var success = option.deactivateRollRequirement(roll)
+			var success = option.deactivateRollRequirement(ary[roll])
 			if success:
 				firebolt(option)
 	#Take in an array of dice and apply them automatically to the locks present.
