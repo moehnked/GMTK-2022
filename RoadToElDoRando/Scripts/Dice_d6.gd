@@ -79,3 +79,7 @@ func _on_DomeChecker_body_entered(body):
 #	if body.name == "Dome":
 #		print ("Dome!")
 	pass # Replace with function body.
+
+
+func _on_DomeChecker_body_exited(body):
+	pass # Replace with function body.
