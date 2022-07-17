@@ -18,9 +18,9 @@ func _ready():
 func start_phase( gameState ):
 	_state = gameState;
 	$AnimationPlayer.play("BeginPhase");
-	$ProgressTracker.set_progress(gameState.CurrentDistance, gameState.PortDistance)
+	$ProgressTracker.set_progress(gameState.currentdistance, gameState.portdistance)
 	DiceManager.connect('report_roll', self, 'handle_dice_roll');
-	DiceManager.request_roll(gameState.Ship.Crew);
+	DiceManager.request_roll(gameState.ship.crew);
 	
 func handle_dice_roll( dice ):
 	DiceManager.disconnect('report_roll', self, 'handle_dice_roll');
@@ -28,9 +28,9 @@ func handle_dice_roll( dice ):
 	var sum = 0;
 	for result in dice:
 		sum = sum + dice[result];
-	_state.CurrentDistance += sum;
-	_state.TotalDistance += sum;
-	$ProgressTracker.set_progress(_state.CurrentDistance, _state.PortDistance);
+	_state.currentdistance += sum;
+	_state.totaldistance += sum;
+	$ProgressTracker.set_progress(_state.currentdistance, _state.portdistance);
 	yield($ProgressTracker, 'progress_updated');
 	$AnimationPlayer.play('EndPhase');
 	yield($AnimationPlayer, 'animation_finished');

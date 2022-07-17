@@ -60,8 +60,8 @@ func initialize():
 
 func update_state( data ):
 	gameState = data;
-	$SuppliesDisplay.update_text( gameState.Ship.Supplies )
-	$CrewDisplay.update_text( gameState.Ship.Crew )
+	$SuppliesDisplay.update_text( gameState.ship.supplies )
+	$CrewDisplay.update_text( gameState.ship.crew )
 	pass
 	
 func handle_phases():
@@ -73,8 +73,8 @@ func handle_phases():
 
 	update_state(yield($ExplorationManager, 'end_phase'));
 
-	if gameState.CurrentDistance >= gameState.PortDistance:
-		gameState.CurrentDistance = 0
+	if gameState.currentdistance >= gameState.portdistance:
+		gameState.currentdistance = 0
 		var phaseRef = get_tree().get_nodes_in_group("Port")[0]
 		phaseRef.initialize(gameState)
 		update_state(yield(phaseRef, 'exited_port'));
@@ -102,20 +102,20 @@ func handle_phases():
 	update_state(yield(phaseRef, "emit_end_phase"));
 		
 	# End Phase
-	gameState.Phase = 0
-	if gameState.Ship.Crew <= 0:
+	gameState.phase = 0
+	if gameState.ship.crew <= 0:
 		print("game over")
 		get_tree().change_scene("res://Scenes/loseScreen.tscn")
 		return true;
-	elif gameState.Ship.Supplies > 0:
-		gameState.Ship.Supplies -= gameState.Ship.Crew
-		get_tree().call_group("SuppliesDisplay", "update_text", gameState.Ship.Supplies)
+	elif gameState.ship.supplies > 0:
+		gameState.ship.supplies -= gameState.ship.crew
+		get_tree().call_group("SuppliesDisplay", "update_text", gameState.ship.supplies)
 		$sfx_daily_consume.play()
 	else:
-		gameState.Ship.Crew -= 1
-		get_tree().call_group("CrewDisplay", "update_text", gameState.Ship.Crew)
+		gameState.ship.crew -= 1
+		get_tree().call_group("CrewDisplay", "update_text", gameState.ship.crew)
 		$sfx_crewDies.play()
-		if gameState.Ship.Crew <= 0:
+		if gameState.ship.crew <= 0:
 			print("game over")
 			get_tree().change_scene("res://Scenes/loseScreen.tscn")
 			return true;

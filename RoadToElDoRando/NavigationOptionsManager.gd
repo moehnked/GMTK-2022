@@ -68,7 +68,7 @@ func startPhase( gameState ):
 	# Dice
 	diceMgr = get_tree().get_nodes_in_group('dice_manager')[0];
 	diceMgr.connect('report_roll', self, 'dice_roll_effect');
-	diceMgr.request_roll( gameState.Ship.Crew );
+	diceMgr.request_roll( gameState.ship.crew );
 #	update()
 
 func AddOptionFromEventDict(ev):

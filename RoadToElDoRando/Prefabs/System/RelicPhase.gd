@@ -15,7 +15,7 @@ func initialize(_gamestate):
 	gameState = _gamestate
 	diceMgr = get_tree().get_nodes_in_group('dice_manager')[0];
 	diceMgr.connect('report_roll', self, 'resolve_relic_rolls');
-	diceMgr.request_roll(gameState["relic"]+1, true);
+	diceMgr.request_roll(gameState["ship"]["relic"]+1, true);
 	#diceButton = get_tree().get_nodes_in_group("DiceButton")[0]
 	#diceButton.enable_relic()
 	#diceButton.connect("emit_roll_clicked", self, "roll_relic")

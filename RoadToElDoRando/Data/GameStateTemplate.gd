@@ -3,18 +3,18 @@ extends Node
 
 const template = {
 	"seed":0,
-	"Phase": 0,
-	"Relics":0,
-	"Ship":{
-		"MaxSupplies":99,
-		"Supplies":5,
-		"Crew":2,
+	"phase": 0,
+	"ship":{
+		"maxsupplies":99,
+		"supplies":5,
+		"crew":2,
+		"relic":0
 	},
-	"Round":0,
-	"PortDistance": 6,
-	"PortsReached": 0,
-	"CurrentDistance":0,
-	"TotalDistance": 0,
+	"round":0,
+	"portdistance": 6,
+	"portsreached": 0,
+	"currentdistance":0,
+	"totaldistance": 0,
 	"events":{}
 }
 

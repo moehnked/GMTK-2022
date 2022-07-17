@@ -183,6 +183,8 @@
 	"hurricane_eye": {
 		"name": "Eye of the Storm",
 		"id": "hurricane_eye",
+		"transform_to": "hurricane_eye",
+		"transform_name": "The Eye of the Storm",
 		"score": 3,
 		"description": "Safe in the heart of the gyre, the wind makes strange shapes.",
 		"options": [{
