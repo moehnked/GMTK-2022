@@ -18,7 +18,7 @@ transform = Transform( -4.37114e-08, -0.5, 0.866025, 0, 0.866025, 0.5, -1, 2.185
 near = 0.03
 far = 1575.4
 
-[node name="Dice Manager" type="Node" parent="."]
+[node name="Dice Manager" type="Node" parent="." groups=["dice_manager"]]
 script = ExtResource( 3 )
 
 [node name="Dice" type="Node" parent="Dice Manager"]
