@@ -25,8 +25,6 @@ func _physics_process(delta):
 	# when die is left-clicked
 	if Input.is_action_just_pressed("select"):
 		select_die()
-#	if not passed_through_dome:
-#		dome_check()
 
 # Check if this die has passed through the dome for the first time
 #func dome_check ():

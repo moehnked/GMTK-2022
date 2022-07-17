@@ -72,12 +72,11 @@ func full_roll (n_dice):
 	final_rolls.clear()
 	spawn_dice(n_dice)
 	initial_roll()
-	#report_roll()
 	
 func emit_report_roll():
 	emit_signal("report_roll", final_rolls)
 
-#### Change later to get actual first roll ####
+#### TODO Change later to get actual first roll ####
 func initial_roll():
 	roll_remaining_dice()
 	
@@ -104,12 +103,12 @@ func read_dice_values ():
 			despawn_die(die)
 	dice_array = reroll
 	if dice_array.size() != 0:
-#		roll_remaining_dice()
-		var num = dice_array.size()
-		for die in dice_array:
-			despawn_die(die)
-		spawn_dice(num)
-		return false
+		roll_remaining_dice()
+#		var num = dice_array.size()
+#		for die in dice_array:
+#			despawn_die(die)
+#		spawn_dice(num)
+#		return false
 	else:
 		emit_report_roll()
 		for die in dice_array:

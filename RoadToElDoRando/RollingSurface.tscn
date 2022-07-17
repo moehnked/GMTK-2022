@@ -37,7 +37,7 @@ metallic = 0.31
 metallic_specular = 0.0
 roughness = 0.0
 
-[node name="Spatial" type="Spatial"]
+[node name="Playmat" type="Spatial"]
 
 [node name="Rolling Surface" type="StaticBody" parent="."]
 collision_layer = 3
