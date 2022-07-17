@@ -33,7 +33,6 @@ func select_dice ():
 	var space = get_world().direct_space_state
 	var collision_mask = 1 << 2
 	var result = space.intersect_ray (from, to,[] , collision_mask)
-	print (result)
 	if "collider" in result:
 		return result.collider
 	return null

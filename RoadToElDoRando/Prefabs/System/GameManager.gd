@@ -1,5 +1,6 @@
 extends Node
 
+
 signal exploration_phase_start
 signal exploration_phase_end
 signal navigation_phase_start
@@ -62,7 +63,8 @@ func initialize():
 # Game Summary
 
 func update_state( data ):
-	pass
+	if 'CurrentDistance' in data:
+		$ProgressTracker.set_distance(data['CurrentDistance'])
 
 func handle_phases():
 	# PHASE 1: Exploration

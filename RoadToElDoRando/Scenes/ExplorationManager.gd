@@ -1,4 +1,4 @@
-xtends Node
+extends Node2D
 
 
 # Declare member variables here. Examples:
@@ -10,9 +10,10 @@ xtends Node
 func _ready():
 	pass # Replace with function body.
 
+# BEGIN
+# Animate controls in
+# 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	var x = GameManager.get_rng()
-	print(x)
+#func _process(delta):
 #	pass
