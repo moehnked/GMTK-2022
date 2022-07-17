@@ -11,9 +11,9 @@ func _ready():
 func initialize(_gamestate):
 	gameState = _gamestate
 	rng.seed = gameState.seed
+	$Container/SuppliesDisplay.update_text(gameState["ship"]["supplies"])
 	$AnimationPlayer.play("default")
 	yield($AnimationPlayer, 'animation_finished')
-	$Container/SuppliesDisplay.update_text(gameState["ship"]["supplies"])
 	$AudioStreamPlayer.play()
 	replenish_supplies()
 	$Timer.start()
@@ -22,11 +22,12 @@ func initialize(_gamestate):
 
 func replenish_supplies():
 	var ship = gameState["ship"]
-	if ship["supplies"] < ship["maxsupplies"]:
+	if ship["supplies"] <= ship["maxsupplies"]:
 		ship["supplies"] += 1
 	else:
 		gameState["ship"]["supplies"] = ship["maxsupplies"]
-	get_tree().call_group("suppliesdisplay", "update_text", ship["supplies"])
+	#get_tree().call_group("suppliesdisplay", "update_text", ship["supplies"])
+	$Container/SuppliesDisplay.update_text(gameState["ship"]["supplies"])
 	
 
 func exit_port():

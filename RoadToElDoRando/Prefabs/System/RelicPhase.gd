@@ -22,11 +22,14 @@ func initialize(_gamestate):
 
 func resolve_relic_rolls(ary):
 	print(ary)
+	var count = 0
 	var win = true
 	for r in ary.values():
 		if r != 6:
 			win = false
-	if win == true:
+		else:
+			count += 1
+	if win == true and count >= 6:
 		get_tree().change_scene("res://Scenes/winScreen.tscn")
 	
 	diceMgr.disconnect('report_roll', self, 'dice_roll_effect');

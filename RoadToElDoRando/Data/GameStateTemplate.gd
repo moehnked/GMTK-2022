@@ -11,7 +11,7 @@ const template = {
 		"relic":0
 	},
 	"round":0,
-	"portdistance": 6,
+	"portdistance": 10,
 	"portsreached": 0,
 	"currentdistance":0,
 	"totaldistance": 0,
