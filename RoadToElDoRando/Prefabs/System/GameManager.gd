@@ -26,7 +26,7 @@ var gameState = {
 		"Statuses":{}
 	},
 	"Round":0,
-	"PortDistance":4,
+	"PortDistance": 30,
 	"PortsReached": 0,
 	"CurrentDistance":0,
 	"TotalDistance": 0,
@@ -77,7 +77,8 @@ func handle_phases():
 	
 	update_state(yield($ExplorationManager, 'end_phase'));
 	
-	if gameState.CurrentDistance <= gameState.PortDistance:
+	if gameState.CurrentDistance >= gameState.PortDistance:
+		print('Entered Port!', gameState.CurrentDistance, ' ', gameState.PortDistance)
 		emit_signal("entered_port");
 		update_state(yield(self, 'exited_port'));
 		return true;
@@ -138,7 +139,7 @@ func load_game():
 		save()
 		return
 	file.open(fileString, File.READ)
-	gameState = parse_json(file.get_as_text())
+#	gameState = parse_json(file.get_as_text())
 
 
 func save():
