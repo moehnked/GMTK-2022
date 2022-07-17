@@ -1,5 +1,6 @@
 extends Node2D
 
+signal end_phase
 
 # Declare member variables here. Examples:
 # var a = 2

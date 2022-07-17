@@ -75,7 +75,7 @@ func handle_phases():
 	
 	$ExplorationManager.start_phase(gameState);	
 	
-	update_state(yield(self, 'end_phase'));
+	update_state(yield($ExplorationManager, 'end_phase'));
 	print(gameState);
 	return;
 	
