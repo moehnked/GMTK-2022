@@ -12,6 +12,8 @@ signal event_triggered
 
 var selectedOption = null
 
+var canSelect = false
+
 var tweenSpeed = 1.1 #Seconds to arrive on-screen
 var dist = 520 #How far to display from center of screen
 var vertscale = 0.8 #Distorts the y-axis of the display area up so that labels have better vertical spacing
@@ -175,19 +177,18 @@ func UndisplayNavigationOptions():
 	#Yield for tween completion, then hide
 	$Tween.start()
 
-func generateEventEntry(eventdict):
-	pass
-
 func RemoveOption(op):
 	if op in options:
 		options.erase(op)
 		op.queue_free()
 
 func SelectOption(op):
-	if op in options:
+	if op in options and canSelect == true:
+		canSelect=false
+		op.isSelected=true
 		RaiseEvent(op)
-		#$Tween.interpolate_property(op,"rect_position",op.rect_position,$EventLocation.rect_position - op.rect_size/2,0.6,Tween.TRANS_CUBIC,Tween.EASE_OUT,1)
-		#$Tween.start()
+#		$Tween.interpolate_property(op,"rect_position",op.rect_position,$EventLocation.rect_position - op.rect_size/2,0.6,Tween.TRANS_CUBIC,Tween.EASE_OUT,1)
+#		$Tween.start()
 	else:
 		print("ERROR: OPTION NOT IN LIST")
 
@@ -207,6 +208,9 @@ func dice_roll_effect(ary):
 			if success:
 				firebolt(option)
 	#Take in an array of dice and apply them automatically to the locks present.
+	yield($Tween,"tween_all_completed")
+	print("Rolling complete, ready to go")
+	canSelect=true
 
 func firebolt(op):
 	var lockpos = op.get_node("Locked").rect_position + op.rect_position + op.get_node("Locked").rect_size/2
@@ -259,7 +263,7 @@ func generateEventList():
 		if requirementsNum>0:
 			requirementsFormatted.append(diceString)
 		events[chosenEvent] = requirementsFormatted
-		print("Event ",chosenEvent, " : ",requirementsFormatted)
+#		print("Event ",chosenEvent, " : ",requirementsFormatted)
 	
 	var isNoCostOption = false
 	
@@ -268,7 +272,7 @@ func generateEventList():
 			isNoCostOption = true
 			break
 	if isNoCostOption == false:
-		print("Guaranteeing outcome")
+#		print("Guaranteeing outcome")
 		var rndindex = (rng.randi() % eventlist.size()-1)
 		var newEvent = eventlist[rndindex]
 		while events.has(newEvent):

@@ -136,5 +136,4 @@ func _on_TextureButton_pressed():
 	print("Registered Click for Event: ",eventID)
 	
 	if !isLocked:
-		isSelected=true
 		manager.SelectOption(self)
