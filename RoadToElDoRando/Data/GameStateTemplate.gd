@@ -6,12 +6,12 @@ const template = {
 	"phase": 0,
 	"ship":{
 		"maxsupplies":99,
-		"supplies":9,
-		"crew":4,
+		"supplies":25,
+		"crew":5,
 		"relic":0
 	},
 	"round":0,
-	"portdistance": 7,
+	"portdistance": 17,
 	"portsreached": 0,
 	"currentdistance":0,
 	"totaldistance": 0,

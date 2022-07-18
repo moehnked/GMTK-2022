@@ -23,7 +23,7 @@ func initialize(_gamestate):
 func replenish_supplies():
 	var ship = gameState["ship"]
 	if ship["supplies"] <= ship["maxsupplies"]:
-		ship["supplies"] += 1
+		ship["supplies"] += 20
 	else:
 		gameState["ship"]["supplies"] = ship["maxsupplies"]
 	#get_tree().call_group("suppliesdisplay", "update_text", ship["supplies"])
